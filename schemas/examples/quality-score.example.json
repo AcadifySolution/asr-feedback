@@ -1,0 +1,22 @@
+{
+  "scoreId": "QS-2026-0547-001",
+  "entryId": "FB-2026-0547-001",
+  "composite": 74,
+  "band": "acceptable",
+  "breakdown": {
+    "goodSignalScore": 85,
+    "badSignalPenalty": -18,
+    "severityImpact": -8,
+    "completenessScore": 72,
+    "consistencyScore": 91
+  },
+  "weights": {
+    "goodSignal": 0.25,
+    "badSignal": 0.30,
+    "severity": 0.20,
+    "completeness": 0.15,
+    "consistency": 0.10
+  },
+  "calculatedAt": "2026-07-01T14:24:00.000Z",
+  "version": "2.3.0"
+}

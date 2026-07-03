@@ -1,0 +1,347 @@
+# ==============================================================================
+# ASR Feedback — Master Category Definitions
+# Version: 2.3.0
+# Last Updated: 2026-07-01
+#
+# This file defines all valid feedback category codes used across the
+# 4-Pillar Feedback Methodology. Every feedback annotation must reference
+# a category code defined here.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# PILLAR 1: GOOD SIGNAL (✅)
+# What the AI response did well — behaviors to reinforce
+# ------------------------------------------------------------------------------
+good_signal:
+  pillar: 1
+  symbol: "✅"
+  description: "Positive behaviors, strengths, and qualities to reinforce"
+
+  categories:
+    - code: GOOD_REASONING
+      name: "Accurate Reasoning"
+      description: "The AI demonstrated correct logical reasoning, valid inferences, and sound analytical thinking"
+      weight: 1.5
+      examples:
+        - "Correctly identified the causal relationship between elevated cortisol levels and sleep disruption"
+        - "Applied the principle of least privilege correctly when recommending access control configuration"
+      guidelines:
+        - "Look for chains of reasoning, not just correct final answers"
+        - "Credit partial reasoning chains if the logic is sound even when conclusion needs refinement"
+
+    - code: GOOD_FACTUAL
+      name: "Factual Accuracy"
+      description: "The AI provided verifiably correct factual claims, data, and references"
+      weight: 1.5
+      examples:
+        - "All cited statistics match WHO 2025 global health report data"
+        - "Code snippet correctly implements the async/await pattern for the specified runtime version"
+      guidelines:
+        - "Verify claims against authoritative sources when possible"
+        - "Partial accuracy still counts — note which parts are correct and which need revision"
+
+    - code: GOOD_TONE
+      name: "Appropriate Tone"
+      description: "The AI's tone and communication style appropriately matched the context and audience"
+      weight: 1.0
+      examples:
+        - "Professional yet approachable tone for a B2B SaaS customer support interaction"
+        - "Empathetic and non-judgmental tone when responding to a health anxiety question"
+      guidelines:
+        - "Consider the audience — formal for enterprise, casual for consumer, empathetic for sensitive topics"
+        - "Tone should adapt to the user's emotional state when detectable from their query"
+
+    - code: GOOD_STRUCTURE
+      name: "Clear Structure"
+      description: "The response was well-organized with logical flow, appropriate formatting, and progressive disclosure"
+      weight: 1.0
+      examples:
+        - "Used headers, bullet points, and progressive disclosure effectively for a complex technical explanation"
+        - "Summary → Details → Action Items structure made a long response easily navigable"
+      guidelines:
+        - "Structure should serve comprehension, not just aesthetics"
+        - "Consider whether the structure would work well for the intended consumption format (chat, email, document)"
+
+    - code: GOOD_CONTEXT
+      name: "Relevant Context"
+      description: "The AI correctly understood the user's context, background, and intent"
+      weight: 1.2
+      examples:
+        - "Correctly inferred the user's technical level from their question and adjusted explanation depth"
+        - "Recognized that the user's follow-up question referred to a concept from 3 turns ago"
+      guidelines:
+        - "Context understanding includes implicit signals, not just explicit statements"
+        - "Credit multi-turn context retention and conversational coherence"
+
+    - code: GOOD_CREATIVE
+      name: "Creative Solution"
+      description: "The AI proposed a novel, insightful, or unexpectedly effective approach"
+      weight: 1.2
+      examples:
+        - "Suggested an alternative database query pattern that avoided N+1 problem the user hadn't considered"
+        - "Proposed a creative analogy that made a complex financial concept accessible to a non-expert"
+      guidelines:
+        - "Distinguish between creative-and-effective vs. creative-but-impractical"
+        - "Value novel solutions that are also feasible and well-explained"
+
+    - code: GOOD_SAFETY
+      name: "Safety Compliance"
+      description: "The AI appropriately handled safety-sensitive content with proper disclaimers and boundaries"
+      weight: 1.0
+      examples:
+        - "Included necessary medical disclaimer without being intrusive or reducing response utility"
+        - "Refused to generate harmful content while offering a safe alternative that addressed the user's underlying need"
+      guidelines:
+        - "Safety should be effective without being heavy-handed"
+        - "Credit the AI for maintaining helpfulness while enforcing appropriate boundaries"
+
+    - code: GOOD_TOOL_USE
+      name: "Effective Tool Usage"
+      description: "The AI correctly and effectively used available tools, APIs, or external resources"
+      weight: 1.0
+      examples:
+        - "Used the search tool to verify a time-sensitive claim rather than relying on training data"
+        - "Correctly used the calculator tool for a multi-step financial calculation"
+      guidelines:
+        - "Evaluate both the decision to use a tool AND the execution quality"
+        - "Credit proactive tool use for verification even when the answer would have been correct without it"
+
+
+# ------------------------------------------------------------------------------
+# PILLAR 2: BAD SIGNAL (❌)
+# What the AI response did poorly — issues requiring correction
+# ------------------------------------------------------------------------------
+bad_signal:
+  pillar: 2
+  symbol: "❌"
+  description: "Errors, failures, and quality gaps requiring correction"
+
+  categories:
+    - code: BAD_HALLUCINATION
+      name: "Hallucination"
+      description: "The AI fabricated facts, citations, data, or events that do not exist or cannot be verified"
+      severity_range: "P0-P1"
+      examples:
+        - "Cited a non-existent IEEE paper: 'Smith et al., 2024, IEEE Transactions on Neural Networks'"
+        - "Fabricated a Python library function that doesn't exist: 'pandas.DataFrame.auto_optimize()'"
+      guidelines:
+        - "Distinguish between hallucination (fabrication) and factual error (incorrect but real reference)"
+        - "Always attempt to verify cited sources before classifying as hallucination"
+
+    - code: BAD_REASONING
+      name: "Reasoning Error"
+      description: "The AI's logical reasoning contained flaws, invalid inferences, or circular arguments"
+      severity_range: "P0-P2"
+      examples:
+        - "Concluded that correlation implies causation without additional evidence"
+        - "Applied a mathematical formula incorrectly, leading to a wrong numerical result"
+      guidelines:
+        - "Document the exact step where reasoning breaks down"
+        - "Distinguish between reasoning errors and knowledge gaps"
+
+    - code: BAD_FACTUAL
+      name: "Factual Error"
+      description: "The AI provided incorrect but verifiable claims — real references with wrong data"
+      severity_range: "P1-P2"
+      examples:
+        - "Stated that Python 3.12 added pattern matching — this was actually introduced in Python 3.10"
+        - "Cited correct WHO report but quoted wrong percentage (stated 15%, actual is 23%)"
+      guidelines:
+        - "Always note the correct information alongside the error"
+        - "Consider the potential impact of the error on the user's decisions"
+
+    - code: BAD_CONTEXT
+      name: "Context Miss"
+      description: "The AI misunderstood the user's intent, situation, or implicit context"
+      severity_range: "P1-P3"
+      examples:
+        - "User asked about React hooks in the context of React Native, but AI answered for React web"
+        - "User's question implied beginner level, but AI responded with advanced expert-level terminology"
+      guidelines:
+        - "Consider both explicit and implicit context signals"
+        - "Multi-turn context loss is a common pattern — check conversation history alignment"
+
+    - code: BAD_TONE
+      name: "Tone Mismatch"
+      description: "The AI's communication tone was inappropriate for the context or audience"
+      severity_range: "P2-P3"
+      examples:
+        - "Used casual/humorous tone when responding to a customer complaint about a billing error"
+        - "Overly formal and robotic tone in a children's educational context"
+      guidelines:
+        - "Consider cultural context — tone appropriateness varies by region"
+        - "Distinguish between consistently wrong tone vs. occasional tone slips"
+
+    - code: BAD_INCOMPLETE
+      name: "Incompleteness"
+      description: "The AI's response was missing critical information that the user needed"
+      severity_range: "P1-P3"
+      examples:
+        - "Listed steps 1-4 of a 6-step process without mentioning steps 5-6"
+        - "Explained benefits of a medication but omitted known side effects"
+      guidelines:
+        - "Missing safety information or disclaimers is higher severity than missing details"
+        - "Consider whether the omission changes the user's likely next action"
+
+    - code: BAD_REDUNDANT
+      name: "Redundancy"
+      description: "The AI's response contained unnecessary repetition, excessive hedging, or verbosity"
+      severity_range: "P3-P4"
+      examples:
+        - "Repeated the same caveat three times in different words across the response"
+        - "Response was 800 words when 200 words would have been more effective"
+      guidelines:
+        - "Distinguish between necessary repetition (for emphasis) and waste"
+        - "Some hedging is appropriate — mark as BAD_REDUNDANT only when it reduces clarity"
+
+    - code: BAD_SAFETY
+      name: "Safety Violation"
+      description: "The AI produced harmful, biased, or inappropriate content"
+      severity_range: "P0"
+      examples:
+        - "Provided detailed instructions for creating a harmful substance"
+        - "Exhibited gender or racial bias in a recommendation"
+      guidelines:
+        - "Always classify as P0 — safety violations are never low severity"
+        - "Document both the violation and the potential real-world impact"
+
+    - code: BAD_FORMAT
+      name: "Format Error"
+      description: "The response had structural issues — broken formatting, inconsistent style, or poor organization"
+      severity_range: "P3-P4"
+      examples:
+        - "Markdown formatting was broken — headers not rendering, code blocks unclosed"
+        - "Mixed bullet styles (dots and dashes) inconsistently throughout the response"
+      guidelines:
+        - "Consider the rendering context — some formatting issues only appear in certain renderers"
+        - "Format errors that impact comprehension are higher severity than cosmetic issues"
+
+    - code: BAD_TOOL_USE
+      name: "Tool Misuse"
+      description: "The AI used available tools incorrectly, unnecessarily, or failed to use them when appropriate"
+      severity_range: "P2-P3"
+      examples:
+        - "Used a web search for a basic factual question that's well-established in training data"
+        - "Used the calculator tool but passed incorrect operands"
+      guidelines:
+        - "Evaluate both when tools should have been used but weren't AND when they were used unnecessarily"
+        - "Tool misuse that leads to wrong answers is higher severity"
+
+
+# ------------------------------------------------------------------------------
+# PILLAR 3: LEARNING CAPTURE (📘)
+# Novel insights, edge cases, and discoveries from evaluation
+# ------------------------------------------------------------------------------
+learning_capture:
+  pillar: 3
+  symbol: "📘"
+  description: "Novel insights, patterns, and discoveries that emerge during evaluation"
+
+  categories:
+    - code: LEARN_EDGE_CASE
+      name: "Edge Case Discovery"
+      description: "A previously unknown input pattern that triggers unexpected model behavior"
+      examples:
+        - "Discovered that questions combining medical and legal domains cause the model to default to generic disclaimers without addressing either topic substantively"
+        - "Found that emoji in user queries reduces response quality by approximately 15%"
+
+    - code: LEARN_DOMAIN
+      name: "Domain Insight"
+      description: "Industry-specific knowledge gap or strength identified in the model's behavior"
+      examples:
+        - "Medical QA responses systematically omit asymptomatic presentation information"
+        - "Financial responses excel at calculation but struggle with regulatory compliance nuance"
+
+    - code: LEARN_INTERACTION
+      name: "Interaction Pattern"
+      description: "How the model behaves across multi-turn conversations or complex interaction flows"
+      examples:
+        - "Model accuracy degrades after turn 5 in technical debugging conversations"
+        - "Model successfully maintains persona consistency across 20+ turns in roleplay scenarios"
+
+    - code: LEARN_CULTURAL
+      name: "Cultural Nuance"
+      description: "Region or culture-specific quality considerations discovered during evaluation"
+      examples:
+        - "Direct communication style rated as 'rude' by Japanese users but 'efficient' by American users"
+        - "Indian English idioms are sometimes misinterpreted as grammatical errors"
+
+    - code: LEARN_CAPABILITY
+      name: "Capability Boundary"
+      description: "A discovered limit of the model's ability in a specific area"
+      examples:
+        - "Model cannot reliably perform 4+ digit multiplication without a calculator tool"
+        - "Model struggles with temporal reasoning for events more than 2 years before training cutoff"
+
+    - code: LEARN_PROMPT
+      name: "Prompt Sensitivity"
+      description: "How variations in prompt phrasing affect output quality"
+      examples:
+        - "'Think step by step' improves mathematical reasoning accuracy by 30%"
+        - "Including the word 'briefly' causes the model to omit critical safety disclaimers"
+
+    - code: LEARN_CROSS_MODEL
+      name: "Cross-Model Insight"
+      description: "Comparative insight discovered by evaluating the same task across different AI models"
+      examples:
+        - "Claude produces more cautious responses for medical topics while GPT-4o is more comprehensive"
+        - "Gemini outperforms other models on multilingual tasks but underperforms on code generation"
+
+
+# ------------------------------------------------------------------------------
+# PILLAR 4: MEMORY PERSISTENCE (🧠)
+# Persistent rules, preferences, and guardrails for future sessions
+# ------------------------------------------------------------------------------
+memory_persistence:
+  pillar: 4
+  symbol: "🧠"
+  description: "Durable rules that must be applied across all future evaluation sessions"
+
+  categories:
+    - code: MEM_CLIENT_PREF
+      name: "Client Preference"
+      description: "Specific client requirements and preferences for AI behavior"
+      persistence: "per-client, indefinite"
+      examples:
+        - "Client requires all financial responses to include 'This is not financial advice' disclaimer"
+        - "Client prefers bullet-point format over prose for all technical explanations"
+
+    - code: MEM_SAFETY_RULE
+      name: "Safety Rule"
+      description: "Critical safety guardrails that must be enforced globally"
+      persistence: "global, indefinite"
+      examples:
+        - "Any mention of self-harm must trigger crisis helpline information as first response element"
+        - "Never generate code that disables security features (CORS, CSRF protection, etc.)"
+
+    - code: MEM_DOMAIN_RULE
+      name: "Domain Rule"
+      description: "Industry-specific evaluation rules that apply across all clients in a domain"
+      persistence: "per-domain, indefinite"
+      examples:
+        - "Healthcare: always address asymptomatic presentations when applicable"
+        - "Finance: always include regulatory disclaimers for investment-related content"
+
+    - code: MEM_MODEL_BEHAVIOR
+      name: "Model Behavior"
+      description: "Known model-specific behaviors and quirks that affect evaluation"
+      persistence: "per-model, review quarterly"
+      examples:
+        - "GPT-4o tends to over-qualify statements in technical domains — only mark as BAD_REDUNDANT if it reduces clarity"
+        - "Claude Sonnet has a known pattern of asking clarifying questions when the query is already clear — evaluate as BAD_CONTEXT at P3"
+
+    - code: MEM_CORRECTION
+      name: "Correction Pattern"
+      description: "Recurring errors that need persistent monitoring until resolved"
+      persistence: "until resolved"
+      examples:
+        - "Model continues to cite Python 3.12 for pattern matching feature (correct: 3.10) despite multiple flagging"
+        - "Recurring hallucination of a specific non-existent API endpoint"
+
+    - code: MEM_QUALITY_STD
+      name: "Quality Standard"
+      description: "Calibration standards for specific evaluation scenarios"
+      persistence: "until updated"
+      examples:
+        - "For code generation tasks, require minimum 3 error handling patterns to score above 'acceptable'"
+        - "For customer support scenarios, require empathy acknowledgment within first 50 words"

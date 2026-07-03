@@ -1,0 +1,97 @@
+{
+  "entryId": "FB-2026-0547-001",
+  "sessionId": "SES-2026-0547",
+  "responseId": "RESP-HEALTHTECH-20260701-X7K9P2",
+  "timestamp": "2026-07-01T14:23:45.000Z",
+  "evaluator": {
+    "evaluatorId": "EVAL-042",
+    "calibrationScore": 0.89
+  },
+  "model": {
+    "modelId": "gpt-4o-2025-08-06",
+    "provider": "OpenAI",
+    "temperature": 0.7,
+    "maxTokens": 4096
+  },
+  "context": {
+    "domain": "healthcare",
+    "taskType": "question_answering",
+    "language": "en",
+    "conversationTurn": 3,
+    "userQuery": "What are the early signs of Type 2 diabetes?",
+    "systemPrompt": "[Redacted — Client system prompt for medical QA assistant]"
+  },
+  "pillars": {
+    "good": [
+      {
+        "categoryCode": "GOOD_FACTUAL",
+        "description": "Correctly listed the 8 most common early symptoms of Type 2 diabetes as per ADA guidelines, including increased thirst, frequent urination, increased hunger, fatigue, blurred vision, slow-healing sores, frequent infections, and unexplained weight loss",
+        "evidence": "Response paragraphs 1-2: 'The most common early signs of Type 2 diabetes include: 1. Increased thirst (polydipsia)...'",
+        "reinforcementValue": 0.9
+      },
+      {
+        "categoryCode": "GOOD_STRUCTURE",
+        "description": "Used a numbered list with brief explanations for each symptom, making the response scannable and easy to digest for a general audience",
+        "evidence": "Full response format uses numbered list with 1-2 sentence explanations per symptom, followed by a summary paragraph with next steps",
+        "reinforcementValue": 0.8
+      },
+      {
+        "categoryCode": "GOOD_CONTEXT",
+        "description": "Appropriately recognized this was a general health inquiry and calibrated the response for a non-medical audience without excessive jargon",
+        "evidence": "Used accessible language throughout: 'increased thirst (polydipsia)' — included medical term but led with plain language",
+        "reinforcementValue": 0.75
+      }
+    ],
+    "bad": [
+      {
+        "categoryCode": "BAD_INCOMPLETE",
+        "severity": 2,
+        "description": "Did not mention that Type 2 diabetes symptoms can be subtle or absent in early stages, which is a critical clinical fact — the ADA notes that approximately 1 in 4 people with diabetes are undiagnosed because symptoms are not always obvious",
+        "evidence": "No mention of asymptomatic presentation anywhere in the response despite ADA noting 1 in 4 cases are undiagnosed due to lack of obvious symptoms",
+        "rootCause": "Training data may not emphasize 'absence of symptoms' as an important clinical consideration for diabetes education — most training examples likely focus on positive symptom descriptions",
+        "remediation": "Include a caveat paragraph noting that early Type 2 diabetes can be asymptomatic, and recommend regular screening for at-risk populations (family history, obesity, age > 45, sedentary lifestyle)"
+      },
+      {
+        "categoryCode": "BAD_INCOMPLETE",
+        "severity": 3,
+        "description": "Did not include risk factors that should prompt screening even without symptoms",
+        "evidence": "Response ends with 'If you experience any of these symptoms, consult your healthcare provider' but does not mention proactive screening for at-risk individuals",
+        "rootCause": "Response focused on reactive symptom-based approach rather than proactive risk-based screening approach",
+        "remediation": "Add a section on risk factors (family history, BMI > 25, age > 45, gestational diabetes history, ethnicity) that should prompt regular screening regardless of symptoms"
+      }
+    ],
+    "learned": [
+      {
+        "categoryCode": "LEARN_DOMAIN",
+        "observation": "Medical QA responses consistently omit 'negative space' information — things that are notably absent or atypical. In this case, the absence of symptoms is itself clinically important information that AI models fail to address",
+        "evidence": "Observed across 5 medical QA evaluations this session: models list positive symptoms but never address asymptomatic presentations, silent conditions, or absence-based clinical knowledge",
+        "implication": "This is a systematic gap in medical AI responses that could affect clinical decision-making. Users may incorrectly conclude they are healthy if they don't experience listed symptoms",
+        "recommendedAction": "Flag as a domain-wide pattern for medical AI fine-tuning teams. Consider adding 'negative space' prompting to system prompts: 'Include information about when symptoms may be absent or atypical'"
+      }
+    ],
+    "remember": [
+      {
+        "ruleType": "MEM_DOMAIN_RULE",
+        "ruleText": "For medical QA responses about conditions that can be asymptomatic (e.g., Type 2 diabetes, hypertension, certain cancers): always include information about the possibility of being asymptomatic and recommend appropriate screening for at-risk populations",
+        "scope": "domain:healthcare",
+        "expiresAt": null
+      }
+    ]
+  },
+  "qualityScore": {
+    "composite": 74,
+    "breakdown": {
+      "goodSignalScore": 85,
+      "badSignalPenalty": -18,
+      "severityImpact": -8,
+      "completenessScore": 72,
+      "consistencyScore": 91
+    }
+  },
+  "metadata": {
+    "evaluationDuration": 420,
+    "toolsUsed": ["ADA Clinical Guidelines 2025", "PubMed Search"],
+    "confidenceScore": 0.92,
+    "tags": ["medical", "diabetes", "symptom-listing", "asymptomatic-gap", "completeness-issue"]
+  }
+}

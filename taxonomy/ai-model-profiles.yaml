@@ -1,0 +1,160 @@
+# ==============================================================================
+# ASR Feedback — AI Model Profiles
+# Version: 2.3.0
+# Last Updated: 2026-07-01
+#
+# Model-specific evaluation configurations and known behaviors.
+# Evaluators should consult these profiles when reviewing responses
+# from specific models to apply appropriate expectations and context.
+# ==============================================================================
+
+models:
+  # --- OpenAI Models ---
+  - id: "gpt-4o"
+    provider: "OpenAI"
+    category: "general_purpose"
+    known_strengths:
+      - "Strong reasoning across domains"
+      - "Excellent structured output generation"
+      - "Reliable tool/function calling"
+      - "Good multilingual performance"
+    known_weaknesses:
+      - "Occasional over-qualification and hedging"
+      - "Can be verbose in simple Q&A scenarios"
+      - "May hallucinate citations in academic contexts"
+    evaluation_notes:
+      - "Hedging is acceptable in high-stakes domains; flag as BAD_REDUNDANT only when it impedes clarity"
+      - "Verify cited papers and URLs — this model has a known tendency to fabricate academic references"
+
+  - id: "gpt-4.1"
+    provider: "OpenAI"
+    category: "coding_optimized"
+    known_strengths:
+      - "Superior code generation quality"
+      - "Excellent instruction following"
+      - "Strong agentic task completion"
+    known_weaknesses:
+      - "May prioritize instruction compliance over safety in edge cases"
+      - "Less nuanced in creative writing tasks"
+    evaluation_notes:
+      - "Pay special attention to safety boundary adherence in agentic tasks"
+      - "Code should be evaluated for security best practices, not just correctness"
+
+  # --- Anthropic Models ---
+  - id: "claude-opus-4"
+    provider: "Anthropic"
+    category: "general_purpose"
+    known_strengths:
+      - "Exceptional nuanced reasoning"
+      - "Strong safety awareness and boundaries"
+      - "Excellent long-context handling"
+      - "Superior at complex multi-step analysis"
+    known_weaknesses:
+      - "Can be overly cautious in borderline safety scenarios"
+      - "Sometimes refuses valid requests due to conservative safety filters"
+    evaluation_notes:
+      - "Over-caution is not automatically BAD_SAFETY — evaluate whether refusal was proportionate"
+      - "Exceptional at tasks requiring sustained reasoning across long contexts"
+
+  - id: "claude-sonnet-4"
+    provider: "Anthropic"
+    category: "balanced"
+    known_strengths:
+      - "Good balance of speed and quality"
+      - "Reliable for standard tasks"
+      - "Consistent tone and formatting"
+    known_weaknesses:
+      - "May ask unnecessary clarifying questions for clear queries"
+      - "Less creative than opus in open-ended tasks"
+    evaluation_notes:
+      - "Unnecessary clarifying questions should be marked BAD_CONTEXT at P3"
+      - "Good baseline model for A/B comparison studies"
+
+  # --- Google Models ---
+  - id: "gemini-2.5-pro"
+    provider: "Google"
+    category: "general_purpose"
+    known_strengths:
+      - "Excellent multimodal capabilities"
+      - "Strong multilingual performance"
+      - "Deep thinking and reasoning"
+      - "Good at mathematical and scientific reasoning"
+    known_weaknesses:
+      - "Occasional formatting inconsistencies"
+      - "May default to broader responses when specific answers are expected"
+    evaluation_notes:
+      - "Especially strong for tasks involving images, video, or audio alongside text"
+      - "Evaluate multilingual responses with native-speaker standards when possible"
+
+  - id: "gemini-2.5-flash"
+    provider: "Google"
+    category: "speed_optimized"
+    known_strengths:
+      - "Very fast response generation"
+      - "Good cost-performance ratio"
+      - "Adequate for standard tasks"
+    known_weaknesses:
+      - "Lower quality on complex reasoning tasks vs. pro models"
+      - "May miss nuances in multi-layered queries"
+    evaluation_notes:
+      - "Calibrate expectations — flash models trade depth for speed"
+      - "Focus evaluation on whether the trade-off is appropriate for the use case"
+
+  # --- Meta Models ---
+  - id: "llama-3.1-405b"
+    provider: "Meta"
+    category: "open_source"
+    known_strengths:
+      - "Strong performance for an open-source model"
+      - "No usage restrictions for most commercial use cases"
+      - "Good at following structured output instructions"
+    known_weaknesses:
+      - "Safety boundaries less refined than proprietary models"
+      - "May require more explicit prompting for complex tasks"
+    evaluation_notes:
+      - "Pay extra attention to safety — open-source models may have looser guardrails"
+      - "Evaluate based on the model's claimed capabilities, not comparison to frontier models"
+
+  # --- Other Models ---
+  - id: "mistral-large"
+    provider: "Mistral"
+    category: "general_purpose"
+    known_strengths:
+      - "Strong European language support"
+      - "Good reasoning capabilities"
+      - "Efficient for enterprise workloads"
+    known_weaknesses:
+      - "Smaller knowledge base for niche domains"
+      - "May struggle with very long contexts"
+    evaluation_notes:
+      - "Excellent for European multilingual evaluations"
+      - "Consider context window limitations for long-document tasks"
+
+  - id: "deepseek-v3"
+    provider: "DeepSeek"
+    category: "coding_optimized"
+    known_strengths:
+      - "Exceptional code generation"
+      - "Strong mathematical reasoning"
+      - "Cost-effective performance"
+    known_weaknesses:
+      - "Less refined in conversational contexts"
+      - "May need explicit safety prompting"
+    evaluation_notes:
+      - "Evaluate coding tasks on security, correctness, and best practices"
+      - "For non-coding tasks, calibrate expectations appropriately"
+
+# ==============================================================================
+# Custom / Fine-Tuned Models
+# ==============================================================================
+custom_model_template:
+  description: "Template for registering client-specific fine-tuned models"
+  fields:
+    - id: "Required — unique model identifier"
+    - provider: "Required — base model provider"
+    - base_model: "Required — which base model was fine-tuned from"
+    - fine_tuning_domain: "Required — what domain/task the fine-tuning targeted"
+    - known_strengths: "List of known strengths from client"
+    - known_weaknesses: "List of known weaknesses from client"
+    - evaluation_notes: "Special evaluation considerations"
+    - client_id: "Associated client identifier"

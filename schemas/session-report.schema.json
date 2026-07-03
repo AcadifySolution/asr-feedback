@@ -1,0 +1,189 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asrfeedback.com/schemas/session-report/v2.3.0",
+  "title": "ASR Session Report",
+  "description": "Schema for a session-level aggregated report in the ASR Feedback Intelligence Platform. A session report summarizes all feedback entries from a single evaluation session.",
+  "type": "object",
+  "required": [
+    "reportId",
+    "sessionId",
+    "clientId",
+    "evaluator",
+    "period",
+    "model",
+    "summary",
+    "pillarSummary",
+    "topIssues",
+    "keyLearnings",
+    "recommendations"
+  ],
+  "properties": {
+    "reportId": {
+      "type": "string",
+      "pattern": "^RPT-\\d{4}-\\d{4}$",
+      "description": "Unique report identifier. Format: RPT-YYYY-NNNN",
+      "examples": ["RPT-2026-0547"]
+    },
+    "sessionId": {
+      "type": "string",
+      "pattern": "^SES-\\d{4}-\\d{4}$",
+      "description": "Parent session identifier"
+    },
+    "clientId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Client identifier"
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["evaluatorId"],
+      "properties": {
+        "evaluatorId": {
+          "type": "string",
+          "description": "Evaluator identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Evaluator display name"
+        }
+      }
+    },
+    "period": {
+      "type": "object",
+      "required": ["startTime", "endTime", "totalDuration"],
+      "properties": {
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Session start time (ISO 8601)"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Session end time (ISO 8601)"
+        },
+        "totalDuration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total session duration in seconds"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": ["modelId", "provider"],
+      "properties": {
+        "modelId": { "type": "string" },
+        "provider": { "type": "string" }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["totalEntries", "totalResponses", "averageCompositeScore", "scoreDistribution"],
+      "properties": {
+        "totalEntries": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total feedback entries in this session"
+        },
+        "totalResponses": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total AI responses evaluated"
+        },
+        "averageCompositeScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Mean composite quality score across all entries"
+        },
+        "scoreDistribution": {
+          "type": "object",
+          "required": ["excellent", "good", "acceptable", "poor", "critical"],
+          "properties": {
+            "excellent": { "type": "integer", "minimum": 0, "description": "Entries scoring 90-100" },
+            "good": { "type": "integer", "minimum": 0, "description": "Entries scoring 75-89" },
+            "acceptable": { "type": "integer", "minimum": 0, "description": "Entries scoring 60-74" },
+            "poor": { "type": "integer", "minimum": 0, "description": "Entries scoring 40-59" },
+            "critical": { "type": "integer", "minimum": 0, "description": "Entries scoring 0-39" }
+          }
+        }
+      }
+    },
+    "pillarSummary": {
+      "type": "object",
+      "required": ["good", "bad", "learned", "remember"],
+      "properties": {
+        "good": {
+          "type": "object",
+          "properties": {
+            "totalSignals": { "type": "integer", "minimum": 0 },
+            "topCategories": { "type": "array", "items": { "type": "string" } },
+            "averageReinforcementValue": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "bad": {
+          "type": "object",
+          "properties": {
+            "totalSignals": { "type": "integer", "minimum": 0 },
+            "bySeverity": {
+              "type": "object",
+              "properties": {
+                "P0": { "type": "integer", "minimum": 0 },
+                "P1": { "type": "integer", "minimum": 0 },
+                "P2": { "type": "integer", "minimum": 0 },
+                "P3": { "type": "integer", "minimum": 0 },
+                "P4": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "topCategories": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "learned": {
+          "type": "object",
+          "properties": {
+            "totalInsights": { "type": "integer", "minimum": 0 },
+            "topCategories": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "remember": {
+          "type": "object",
+          "properties": {
+            "newRules": { "type": "integer", "minimum": 0 },
+            "existingRulesApplied": { "type": "integer", "minimum": 0 },
+            "existingRulesViolated": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "topIssues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "category", "occurrences", "description"],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "category": { "type": "string" },
+          "occurrences": { "type": "integer", "minimum": 1 },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "keyLearnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Summary of key insights discovered during the session"
+    },
+    "newMemoryRules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "New persistent rules created during this session"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Actionable recommendations for the client"
+    }
+  },
+  "additionalProperties": false
+}

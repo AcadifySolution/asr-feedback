@@ -1,0 +1,30 @@
+{
+  "name": "@asr-feedback/client",
+  "version": "2.3.0",
+  "description": "Official JavaScript client for the ASR Feedback Intelligence Platform",
+  "main": "asr-feedback-client.js",
+  "types": "asr-feedback-client.d.ts",
+  "license": "MIT",
+  "author": "Acadify Solutions <engineering@acadifysolutions.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acadify-solutions/asr-feedback.git",
+    "directory": "sdk/javascript"
+  },
+  "keywords": [
+    "asr-feedback",
+    "ai-quality",
+    "feedback",
+    "llm-evaluation",
+    "ai-evaluation",
+    "quality-assurance"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "asr-feedback-client.js",
+    "asr-feedback-client.d.ts",
+    "README.md"
+  ]
+}

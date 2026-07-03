@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asrfeedback.com/schemas/quality-score/v2.3.0",
+  "title": "ASR Quality Score",
+  "description": "Schema for the quality scoring system in the ASR Feedback Intelligence Platform. Defines the composite score calculation and its component breakdown.",
+  "type": "object",
+  "required": ["scoreId", "entryId", "composite", "band", "breakdown", "calculatedAt"],
+  "properties": {
+    "scoreId": {
+      "type": "string",
+      "pattern": "^QS-\\d{4}-\\d{4}-\\d{3}$",
+      "description": "Unique score identifier. Format: QS-YYYY-NNNN-NNN",
+      "examples": ["QS-2026-0547-001"]
+    },
+    "entryId": {
+      "type": "string",
+      "pattern": "^FB-\\d{4}-\\d{4}-\\d{3}$",
+      "description": "Associated feedback entry identifier"
+    },
+    "composite": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall quality score (0-100)"
+    },
+    "band": {
+      "type": "string",
+      "enum": ["excellent", "good", "acceptable", "poor", "critical"],
+      "description": "Quality band classification based on composite score"
+    },
+    "breakdown": {
+      "type": "object",
+      "required": [
+        "goodSignalScore",
+        "badSignalPenalty",
+        "severityImpact",
+        "completenessScore",
+        "consistencyScore"
+      ],
+      "properties": {
+        "goodSignalScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Score derived from positive signal detection (weight: 0.25)"
+        },
+        "badSignalPenalty": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 0,
+          "description": "Penalty from negative signal detection (weight: 0.30)"
+        },
+        "severityImpact": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 0,
+          "description": "Additional penalty based on issue severity (weight: 0.20)"
+        },
+        "completenessScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "How completely the AI response addressed the task (weight: 0.15)"
+        },
+        "consistencyScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Consistency with established quality patterns (weight: 0.10)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "weights": {
+      "type": "object",
+      "description": "Weight configuration used for this calculation (may vary by client)",
+      "properties": {
+        "goodSignal": { "type": "number", "default": 0.25 },
+        "badSignal": { "type": "number", "default": 0.30 },
+        "severity": { "type": "number", "default": 0.20 },
+        "completeness": { "type": "number", "default": 0.15 },
+        "consistency": { "type": "number", "default": 0.10 }
+      }
+    },
+    "calculatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this score was calculated"
+    },
+    "version": {
+      "type": "string",
+      "description": "Scoring algorithm version",
+      "default": "2.3.0"
+    }
+  },
+  "additionalProperties": false
+}

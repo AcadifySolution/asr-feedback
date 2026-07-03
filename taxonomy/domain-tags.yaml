@@ -1,0 +1,129 @@
+# ==============================================================================
+# ASR Feedback — Domain Tags
+# Version: 2.3.0
+# Last Updated: 2026-07-01
+#
+# Industry and domain-specific tagging system. Every feedback entry
+# is tagged with a domain to enable domain-specific analytics,
+# evaluation criteria, and trend analysis.
+# ==============================================================================
+
+domains:
+  - tag: healthcare
+    name: "Healthcare & Medical"
+    description: "Medical advice, clinical decision support, patient education, pharmaceutical information"
+    special_considerations:
+      - "Patient safety is paramount — any medical advice must include appropriate disclaimers"
+      - "Evaluate factual accuracy against clinical guidelines (ADA, WHO, CDC, NICE)"
+      - "Check for asymptomatic condition awareness"
+      - "PII sensitivity is extremely high — verify no patient data leakage"
+    associated_memory_rules:
+      - "MEM_DOMAIN_RULE: Always address asymptomatic presentations"
+      - "MEM_SAFETY_RULE: Include crisis helpline for self-harm mentions"
+    evaluator_requirements:
+      - "Domain familiarity with clinical terminology"
+      - "Access to clinical guidelines databases"
+
+  - tag: finance
+    name: "Finance & Banking"
+    description: "Financial advice, banking operations, investment guidance, regulatory compliance"
+    special_considerations:
+      - "Regulatory compliance is mandatory (TILA, ECOA, FCRA, MiFID II as applicable)"
+      - "Never suggest specific financial products without appropriate disclaimers"
+      - "Verify all numerical calculations independently"
+      - "Check for appropriate risk disclosure language"
+    associated_memory_rules:
+      - "MEM_CLIENT_PREF: Include 'This is not financial advice' disclaimer"
+      - "MEM_DOMAIN_RULE: Always include regulatory compliance disclaimers"
+
+  - tag: education
+    name: "Education & Learning"
+    description: "Tutoring, adaptive learning, curriculum support, educational content"
+    special_considerations:
+      - "Age-appropriate language and complexity is critical"
+      - "Evaluate pedagogical soundness — does the explanation teach or just inform?"
+      - "Check for appropriate scaffolding in step-by-step explanations"
+      - "Verify accessibility for diverse learning styles"
+    associated_memory_rules:
+      - "MEM_DOMAIN_RULE: Calibrate vocabulary to student's grade level"
+      - "MEM_QUALITY_STD: Require worked examples for mathematical explanations"
+
+  - tag: technology
+    name: "Technology & Software"
+    description: "Software development, IT operations, technology guidance, troubleshooting"
+    special_considerations:
+      - "Verify code against the specified runtime/framework version"
+      - "Evaluate security best practices in code suggestions"
+      - "Check for deprecated APIs or libraries"
+      - "Ensure error handling and edge case coverage"
+
+  - tag: legal
+    name: "Legal & Compliance"
+    description: "Legal guidance, contract analysis, regulatory interpretation, compliance"
+    special_considerations:
+      - "AI must never provide definitive legal advice — always recommend professional consultation"
+      - "Jurisdiction-specific requirements must be clearly stated"
+      - "Evaluate for appropriate hedging and qualification of legal statements"
+      - "Check for currency of legal references (laws change frequently)"
+
+  - tag: ecommerce
+    name: "E-Commerce & Retail"
+    description: "Product recommendations, customer support, order management, shopping assistance"
+    special_considerations:
+      - "Verify product information accuracy"
+      - "Check for appropriate return/refund policy references"
+      - "Evaluate personalization quality without crossing privacy boundaries"
+      - "Assess upsell/cross-sell recommendations for relevance vs. pushiness"
+
+  - tag: customer_support
+    name: "Customer Support"
+    description: "General customer service, help desk, troubleshooting, issue resolution"
+    special_considerations:
+      - "Empathy and acknowledgment of customer frustration are required within first 50 words"
+      - "Resolution should be specific and actionable, not generic"
+      - "Check for appropriate escalation when AI cannot resolve the issue"
+      - "Verify that promised actions are within the AI's actual capability"
+
+  - tag: creative
+    name: "Creative & Content"
+    description: "Creative writing, content generation, marketing copy, storytelling"
+    special_considerations:
+      - "Evaluate originality and avoidance of clichés"
+      - "Check that the creative output matches the specified tone and style"
+      - "Assess whether the content serves its intended purpose (persuade, inform, entertain)"
+      - "Verify factual claims within creative content"
+
+  - tag: hr
+    name: "Human Resources"
+    description: "HR policies, employee relations, recruitment, workplace guidance"
+    special_considerations:
+      - "Check for compliance with employment law (varies by jurisdiction)"
+      - "Evaluate for bias in recruitment or evaluation contexts"
+      - "Sensitive topics (termination, harassment) require careful handling"
+      - "Confidentiality of employee information is paramount"
+
+  - tag: manufacturing
+    name: "Manufacturing & Industrial"
+    description: "Production processes, quality control, supply chain, safety protocols"
+    special_considerations:
+      - "Safety instructions must be precise and comprehensive"
+      - "Verify technical specifications and tolerances"
+      - "Check for compliance with industry standards (ISO, OSHA)"
+      - "Evaluate clarity for diverse workforce literacy levels"
+
+  - tag: real_estate
+    name: "Real Estate & Property"
+    description: "Property valuation, market analysis, transaction guidance, regulatory compliance"
+    special_considerations:
+      - "Fair housing law compliance is mandatory"
+      - "Market data should be current and sourced"
+      - "Regional market variations must be acknowledged"
+      - "Avoid discriminatory language or steering behaviors"
+
+  - tag: general
+    name: "General Knowledge"
+    description: "General questions, trivia, everyday advice, miscellaneous topics"
+    special_considerations:
+      - "Apply standard evaluation criteria without domain-specific adjustments"
+      - "Verify factual accuracy against authoritative sources"
+      - "Ensure appropriate tone for the query context"

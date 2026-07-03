@@ -1,0 +1,76 @@
+name: Documentation Lint
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.yaml'
+      - '**/*.yml'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+
+jobs:
+  lint-markdown:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+      
+      - name: Lint Markdown Files
+        run: |
+          markdownlint '**/*.md' \
+            --disable MD013 MD033 MD041 MD024 MD036 \
+            --ignore node_modules \
+            --ignore .github
+        continue-on-error: true
+      
+      - name: Check for Broken Links
+        run: |
+          echo "Checking internal document links..."
+          # Find all markdown links and verify file existence
+          grep -roh '\[.*\](.*\.md)' --include="*.md" . | \
+            grep -oP '\(([^)]+\.md)\)' | \
+            tr -d '()' | \
+            sort -u | \
+            while read link; do
+              # Resolve relative links
+              if [ ! -f "$link" ] && [ ! -f "docs/$link" ]; then
+                echo "⚠️  Potentially broken link: $link"
+              fi
+            done
+          echo "Link check complete"
+
+  lint-yaml:
+    name: Lint YAML Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Install yamllint
+        run: pip install yamllint
+      
+      - name: Lint YAML Files
+        run: |
+          yamllint \
+            -d "{extends: relaxed, rules: {line-length: {max: 200}}}" \
+            taxonomy/*.yaml
+          echo "✅ YAML lint passed"

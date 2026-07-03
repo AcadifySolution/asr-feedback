@@ -1,0 +1,97 @@
+{
+  "reportId": "RPT-2026-0547",
+  "sessionId": "SES-2026-0547",
+  "clientId": "CLIENT-HEALTHTECH-01",
+  "evaluator": {
+    "evaluatorId": "EVAL-042",
+    "name": "Evaluator 42"
+  },
+  "period": {
+    "startTime": "2026-07-01T09:00:00.000Z",
+    "endTime": "2026-07-01T13:30:00.000Z",
+    "totalDuration": 16200
+  },
+  "model": {
+    "modelId": "gpt-4o-2025-08-06",
+    "provider": "OpenAI"
+  },
+  "summary": {
+    "totalEntries": 24,
+    "totalResponses": 24,
+    "averageCompositeScore": 76.3,
+    "scoreDistribution": {
+      "excellent": 5,
+      "good": 11,
+      "acceptable": 6,
+      "poor": 2,
+      "critical": 0
+    }
+  },
+  "pillarSummary": {
+    "good": {
+      "totalSignals": 47,
+      "topCategories": ["GOOD_FACTUAL", "GOOD_REASONING", "GOOD_STRUCTURE"],
+      "averageReinforcementValue": 0.78
+    },
+    "bad": {
+      "totalSignals": 18,
+      "bySeverity": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 7,
+        "P3": 6,
+        "P4": 3
+      },
+      "topCategories": ["BAD_INCOMPLETE", "BAD_CONTEXT", "BAD_REDUNDANT"]
+    },
+    "learned": {
+      "totalInsights": 6,
+      "topCategories": ["LEARN_DOMAIN", "LEARN_EDGE_CASE"]
+    },
+    "remember": {
+      "newRules": 3,
+      "existingRulesApplied": 12,
+      "existingRulesViolated": 1
+    }
+  },
+  "topIssues": [
+    {
+      "rank": 1,
+      "category": "BAD_INCOMPLETE",
+      "occurrences": 5,
+      "description": "Consistently omits asymptomatic presentation information in medical QA responses"
+    },
+    {
+      "rank": 2,
+      "category": "BAD_CONTEXT",
+      "occurrences": 3,
+      "description": "Fails to adapt explanation depth to user's indicated expertise level"
+    },
+    {
+      "rank": 3,
+      "category": "BAD_REDUNDANT",
+      "occurrences": 4,
+      "description": "Over-qualifies statements with excessive hedging in straightforward factual responses"
+    }
+  ],
+  "keyLearnings": [
+    "Medical QA responses systematically omit 'negative space' clinical information — conditions that can be asymptomatic are not flagged as such",
+    "Model performs 23% better on structured output tasks (lists, tables) vs. free-form narrative responses",
+    "Multi-turn conversations show degraded accuracy after turn 5, suggesting context window management issues",
+    "Hindi-language medical responses show 22% lower accuracy than equivalent English responses",
+    "System prompt with explicit regulatory citations improves compliance by 45% over general instructions",
+    "The model consistently excels at differential diagnosis reasoning but struggles with treatment recommendation specificity"
+  ],
+  "newMemoryRules": [
+    "MEM-2026-0312: For healthcare domain — always address asymptomatic presentations when applicable",
+    "MEM-2026-0313: When user indicates expertise level — calibrate response depth accordingly",
+    "MEM-2026-0314: For multi-turn medical conversations — summarize key context every 3 turns"
+  ],
+  "recommendations": [
+    "Schedule targeted fine-tuning session for medical completeness, focusing on asymptomatic conditions and risk-factor-based screening recommendations",
+    "Review and update system prompt to include explicit instructions for handling different user expertise levels",
+    "Implement context summarization at 3-turn intervals for multi-turn conversations to prevent accuracy degradation",
+    "Prioritize Hindi-language medical QA training data augmentation to address the 22% accuracy gap",
+    "Consider structured output mode for complex medical information to leverage the model's 23% performance advantage"
+  ]
+}

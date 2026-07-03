@@ -1,0 +1,429 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asrfeedback.com/schemas/feedback-entry/v2.3.0",
+  "title": "ASR Feedback Entry",
+  "description": "Schema for a single feedback entry in the ASR Feedback Intelligence Platform. A feedback entry is the atomic unit of evaluation, capturing structured observations across all four pillars (Good, Bad, Learned, Remember) for one AI-generated response.",
+  "type": "object",
+  "required": [
+    "entryId",
+    "sessionId",
+    "responseId",
+    "timestamp",
+    "evaluator",
+    "model",
+    "context",
+    "pillars",
+    "qualityScore"
+  ],
+  "properties": {
+    "entryId": {
+      "type": "string",
+      "pattern": "^FB-\\d{4}-\\d{4}-\\d{3}$",
+      "description": "Unique identifier for this feedback entry. Format: FB-YYYY-NNNN-NNN",
+      "examples": ["FB-2026-0547-001"]
+    },
+    "sessionId": {
+      "type": "string",
+      "pattern": "^SES-\\d{4}-\\d{4}$",
+      "description": "Identifier of the parent evaluation session. Format: SES-YYYY-NNNN",
+      "examples": ["SES-2026-0547"]
+    },
+    "responseId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Client's unique identifier for the AI response being evaluated",
+      "examples": ["RESP-CLIENT-20260701-A1B2C3"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the evaluation was completed",
+      "examples": ["2026-07-01T14:23:45.000Z"]
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["evaluatorId", "calibrationScore"],
+      "properties": {
+        "evaluatorId": {
+          "type": "string",
+          "pattern": "^EVAL-\\d{3}$",
+          "description": "Unique evaluator identifier. Format: EVAL-NNN",
+          "examples": ["EVAL-042"]
+        },
+        "calibrationScore": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Evaluator's current calibration score (Cohen's Kappa). Must be >= 0.80 for independent evaluation.",
+          "examples": [0.89]
+        }
+      },
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "required": ["modelId", "provider"],
+      "properties": {
+        "modelId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identifier of the AI model that generated the response",
+          "examples": ["gpt-4o-2025-08-06", "claude-sonnet-4-20250514", "gemini-2.5-pro"]
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["OpenAI", "Anthropic", "Google", "Meta", "Mistral", "DeepSeek", "Custom"],
+          "description": "AI model provider"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 2.0,
+          "description": "Temperature setting used for generation"
+        },
+        "maxTokens": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum token limit for the response"
+        }
+      },
+      "additionalProperties": true
+    },
+    "context": {
+      "type": "object",
+      "required": ["domain", "taskType", "language"],
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Domain classification of the evaluation. See taxonomy/domain-tags.yaml",
+          "examples": ["healthcare", "finance", "education", "technology"]
+        },
+        "taskType": {
+          "type": "string",
+          "enum": [
+            "question_answering",
+            "summarization",
+            "code_generation",
+            "creative_writing",
+            "data_analysis",
+            "conversation",
+            "translation",
+            "classification",
+            "extraction",
+            "reasoning",
+            "multimodal",
+            "agent_task",
+            "other"
+          ],
+          "description": "Type of task the AI response was generated for"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+          "description": "ISO 639-1 language code (optionally with ISO 3166-1 region)",
+          "examples": ["en", "en-US", "hi", "es"]
+        },
+        "conversationTurn": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Turn number in a multi-turn conversation (1 for single-turn)"
+        },
+        "userQuery": {
+          "type": "string",
+          "description": "The user's input query (may be redacted for PII)"
+        },
+        "systemPrompt": {
+          "type": "string",
+          "description": "The system prompt used (may be redacted for confidentiality)"
+        }
+      },
+      "additionalProperties": true
+    },
+    "pillars": {
+      "type": "object",
+      "required": ["good", "bad", "learned", "remember"],
+      "description": "4-Pillar feedback annotations",
+      "properties": {
+        "good": {
+          "type": "array",
+          "description": "Pillar 1: Good Signal — what the AI did well",
+          "items": {
+            "$ref": "#/definitions/GoodSignal"
+          }
+        },
+        "bad": {
+          "type": "array",
+          "description": "Pillar 2: Bad Signal — what the AI did poorly",
+          "items": {
+            "$ref": "#/definitions/BadSignal"
+          }
+        },
+        "learned": {
+          "type": "array",
+          "description": "Pillar 3: Learning Capture — novel insights discovered",
+          "items": {
+            "$ref": "#/definitions/Learning"
+          }
+        },
+        "remember": {
+          "type": "array",
+          "description": "Pillar 4: Memory Persistence — rules to persist for future sessions",
+          "items": {
+            "$ref": "#/definitions/MemoryRule"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualityScore": {
+      "$ref": "#/definitions/QualityScore"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "evaluationDuration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Time spent on evaluation in seconds"
+        },
+        "toolsUsed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "External tools or references used during evaluation"
+        },
+        "confidenceScore": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Evaluator's confidence in their assessment"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-form tags for categorization and search"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "GoodSignal": {
+      "type": "object",
+      "required": ["categoryCode", "description", "evidence", "reinforcementValue"],
+      "properties": {
+        "categoryCode": {
+          "type": "string",
+          "enum": [
+            "GOOD_REASONING",
+            "GOOD_FACTUAL",
+            "GOOD_TONE",
+            "GOOD_STRUCTURE",
+            "GOOD_CONTEXT",
+            "GOOD_CREATIVE",
+            "GOOD_SAFETY",
+            "GOOD_TOOL_USE"
+          ],
+          "description": "Category code for the good signal"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Detailed description of the positive behavior"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Specific evidence from the AI response (quote or reference)"
+        },
+        "reinforcementValue": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "How strongly this behavior should be reinforced (0.0-1.0)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "BadSignal": {
+      "type": "object",
+      "required": ["categoryCode", "severity", "description", "evidence", "rootCause", "remediation"],
+      "properties": {
+        "categoryCode": {
+          "type": "string",
+          "enum": [
+            "BAD_HALLUCINATION",
+            "BAD_REASONING",
+            "BAD_FACTUAL",
+            "BAD_CONTEXT",
+            "BAD_TONE",
+            "BAD_INCOMPLETE",
+            "BAD_REDUNDANT",
+            "BAD_SAFETY",
+            "BAD_FORMAT",
+            "BAD_TOOL_USE"
+          ],
+          "description": "Category code for the bad signal"
+        },
+        "severity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4,
+          "description": "Severity level: 0=Critical, 1=High, 2=Medium, 3=Low, 4=Trivial"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Detailed description of the issue"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Specific evidence from the AI response"
+        },
+        "rootCause": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Analysis of why this issue occurred"
+        },
+        "remediation": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Concrete recommendation for fixing the issue"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Learning": {
+      "type": "object",
+      "required": ["categoryCode", "observation", "evidence", "implication", "recommendedAction"],
+      "properties": {
+        "categoryCode": {
+          "type": "string",
+          "enum": [
+            "LEARN_EDGE_CASE",
+            "LEARN_DOMAIN",
+            "LEARN_INTERACTION",
+            "LEARN_CULTURAL",
+            "LEARN_CAPABILITY",
+            "LEARN_PROMPT",
+            "LEARN_CROSS_MODEL"
+          ],
+          "description": "Category code for the learning"
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 10,
+          "description": "What was discovered"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Supporting evidence for the observation"
+        },
+        "implication": {
+          "type": "string",
+          "minLength": 10,
+          "description": "Why this discovery matters"
+        },
+        "recommendedAction": {
+          "type": "string",
+          "minLength": 10,
+          "description": "What should be done with this insight"
+        }
+      },
+      "additionalProperties": false
+    },
+    "MemoryRule": {
+      "type": "object",
+      "required": ["ruleType", "ruleText", "scope"],
+      "properties": {
+        "ruleType": {
+          "type": "string",
+          "enum": [
+            "MEM_CLIENT_PREF",
+            "MEM_SAFETY_RULE",
+            "MEM_DOMAIN_RULE",
+            "MEM_MODEL_BEHAVIOR",
+            "MEM_CORRECTION",
+            "MEM_QUALITY_STD"
+          ],
+          "description": "Type of memory rule"
+        },
+        "ruleText": {
+          "type": "string",
+          "minLength": 10,
+          "description": "The persistent rule to be remembered"
+        },
+        "scope": {
+          "type": "string",
+          "description": "Scope of applicability (e.g., 'global', 'client:CLIENT_ID', 'domain:healthcare')",
+          "examples": ["global", "client:HEALTHTECH-01", "domain:healthcare"]
+        },
+        "expiresAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Optional expiration date (null for indefinite)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "QualityScore": {
+      "type": "object",
+      "required": ["composite", "breakdown"],
+      "properties": {
+        "composite": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Overall quality score (0-100)"
+        },
+        "breakdown": {
+          "type": "object",
+          "required": [
+            "goodSignalScore",
+            "badSignalPenalty",
+            "severityImpact",
+            "completenessScore",
+            "consistencyScore"
+          ],
+          "properties": {
+            "goodSignalScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Score from positive signal detection"
+            },
+            "badSignalPenalty": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 0,
+              "description": "Penalty from negative signal detection (negative value)"
+            },
+            "severityImpact": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 0,
+              "description": "Additional penalty based on severity of issues (negative value)"
+            },
+            "completenessScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "How complete the AI response was for the task"
+            },
+            "consistencyScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Consistency with established quality patterns"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
