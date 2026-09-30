@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="#overview"><img src="https://img.shields.io/badge/Status-Production-brightgreen?style=flat-square" alt="Status"/></a>
+  <a href="#overview"><img src="https://img.shields.io/badge/Status-Reference%20Implementation-blue?style=flat-square" alt="Status"/></a>
   <a href="docs/ARCHITECTURE.md"><img src="https://img.shields.io/badge/Architecture-Documented-blue?style=flat-square" alt="Architecture"/></a>
   <a href="docs/METHODOLOGY.md"><img src="https://img.shields.io/badge/Methodology-4%20Pillar-orange?style=flat-square" alt="Methodology"/></a>
   <a href="schemas/"><img src="https://img.shields.io/badge/Schema-JSON%20Schema%20Draft%207-yellow?style=flat-square" alt="Schema"/></a>
-  <a href="compliance/"><img src="https://img.shields.io/badge/Compliance-Enterprise%20Ready-purple?style=flat-square" alt="Compliance"/></a>
+  <a href="compliance/"><img src="https://img.shields.io/badge/Governance-Documented-purple?style=flat-square" alt="Compliance"/></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/></a>
 </p>
 
@@ -175,7 +175,7 @@ graph TB
 - RBAC-ready access controls
 - PII detection and redaction
 - SLA monitoring and compliance
-- SOC 2-aligned data handling
+- documented governance and data-handling practices
 
 </td>
 </tr>
@@ -362,7 +362,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 <p align="center">
   <strong>Built with precision by <a href="https://acadifysolutions.com">Acadify Solutions</a></strong><br/>
-  <sub>Enterprise AI Feedback Intelligence • Trusted by Industry Leaders</sub>
+  <sub>Enterprise AI Feedback Intelligence • Structured AI quality evaluation</sub>
 </p>
 
 <p align="center">
