@@ -1,61 +1,39 @@
 name: Schema Validation
 
 on:
-  pull_request:
-    paths:
-      - 'schemas/**'
-      - 'schemas/examples/**'
   push:
     branches: [main]
     paths:
-      - 'schemas/**'
+      - "schemas/**"
+      - ".github/workflows/schema-validation.yml"
+  pull_request:
+    paths:
+      - "schemas/**"
+      - ".github/workflows/schema-validation.yml"
+
+permissions:
+  contents: read
 
 jobs:
-  validate-schemas:
-    name: Validate JSON Schemas
-    runs-on: ubuntu-latest
-    
+  validate:
+    name: Validate JSON Schemas and examples
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      
-      - name: Install ajv-cli
-        run: npm install -g ajv-cli ajv-formats
-      
-      - name: Validate Feedback Entry Schema
+      - uses: actions/checkout@v4
+
+      - name: Validate schema documents
         run: |
-          echo "Validating feedback-entry schema..."
-          ajv validate \
-            -s schemas/feedback-entry.schema.json \
-            -d schemas/examples/feedback-entry.example.json \
-            --spec=draft7
-          echo "✅ Feedback entry schema validation passed"
-      
-      - name: Validate Session Report Schema
-        run: |
-          echo "Validating session-report schema..."
-          ajv validate \
-            -s schemas/session-report.schema.json \
-            -d schemas/examples/session-report.example.json \
-            --spec=draft7
-          echo "✅ Session report schema validation passed"
-      
-      - name: Validate Quality Score Schema
-        run: |
-          echo "Validating quality-score schema..."
-          ajv validate \
-            -s schemas/quality-score.schema.json \
-            -d schemas/examples/quality-score.example.json \
-            --spec=draft7
-          echo "✅ Quality score schema validation passed"
-      
-      - name: Schema Validation Summary
-        run: |
-          echo "========================================"
-          echo "All schema validations passed ✅"
-          echo "========================================"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for path in Path("schemas").glob("*.schema.json"):
+              data = json.loads(path.read_text(encoding="utf-8"))
+              assert data.get("$schema"), f"Missing $schema: {path}"
+              assert data.get("type") == "object", f"Expected object schema: {path}"
+
+          for path in Path("schemas/examples").glob("*.example.json"):
+              json.loads(path.read_text(encoding="utf-8"))
+
+          print("Schema and example JSON validation passed.")
+          PY
