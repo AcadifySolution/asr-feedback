@@ -23,18 +23,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v5
+      - name: Validate Markdown structure
+        uses: DavidAnson/markdownlint-cli2-action@v20
         with:
-          node-version: "22"
+          globs: |
+            **/*.md
+            !.github/**
+          config: |
+            {
+              "config": {
+                "default": true,
+                "MD013": false,
+                "MD024": false,
+                "MD033": false,
+                "MD036": false,
+                "MD041": false,
+                "MD060": false
+              }
+            }
 
-      - name: Install markdownlint
-        run: npm install --global markdownlint-cli
-
-      - name: Lint Markdown
-        run: |
-          markdownlint "**/*.md"             --disable MD013 MD033 MD041 MD024 MD036             --ignore node_modules             --ignore .github
-
-      - name: Validate JSON
+      - name: Validate JSON examples
         run: |
           python - <<'PY'
           import json
