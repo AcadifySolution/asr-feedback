@@ -1,0 +1,49 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Repository quality
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON documents
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          for path in Path(".").rglob("*.json"):
+              if any(part in {".git", "node_modules"} for part in path.parts):
+                  continue
+              json.loads(path.read_text(encoding="utf-8"))
+              print(f"validated {path}")
+          PY
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Validate JavaScript SDK package
+        working-directory: sdk/javascript
+        run: npm install --package-lock=false --ignore-scripts
+
+      - name: Smoke-test JavaScript SDK syntax
+        working-directory: sdk/javascript
+        run: node --check asr-feedback-client.js
+
+      - name: Validate Python SDK syntax
+        run: python -m py_compile sdk/python/asr_feedback_client.py
