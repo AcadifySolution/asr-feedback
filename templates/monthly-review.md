@@ -13,6 +13,7 @@ _3-5 sentence summary of the month's performance, strategic highlights, and forw
 ## Monthly Performance Dashboard
 
 ### Volume Metrics
+
 | Metric | Target | Actual | vs Last Month |
 |---|---|---|---|
 | Total Entries Processed | | | |
@@ -22,6 +23,7 @@ _3-5 sentence summary of the month's performance, strategic highlights, and forw
 | Active Clients | | | |
 
 ### Quality Metrics
+
 | Metric | Target | Actual | vs Last Month |
 |---|---|---|---|
 | Inter-Rater Reliability (κ) | ≥ 0.80 | | |
@@ -31,6 +33,7 @@ _3-5 sentence summary of the month's performance, strategic highlights, and forw
 | Memory Compliance Rate | ≥ 95% | | |
 
 ### SLA Performance
+
 | Tier | SLA | Compliance | vs Last Month |
 |---|---|---|---|
 | Enterprise Critical | 2 hours | | |
@@ -43,12 +46,15 @@ _3-5 sentence summary of the month's performance, strategic highlights, and forw
 ## Trend Analysis
 
 ### Composite Score Trend (12-Week)
+
 _Include trend chart or data points showing quality trajectory._
 
 ### Severity Distribution Trend
+
 _Include severity distribution changes over the past 3 months._
 
 ### Category Usage Analysis
+
 _Top 5 most/least used category codes and what this implies._
 
 ---
@@ -56,6 +62,7 @@ _Top 5 most/least used category codes and what this implies._
 ## Client-by-Client Review
 
 ### Client: _CLIENT-XXX_
+
 | Metric | Value |
 |---|---|
 | Sessions | |
@@ -79,9 +86,11 @@ _Top 5 most/least used category codes and what this implies._
 ## Intelligence Summary
 
 ### Key Learnings (Top 10)
+
 1. _Learning with domain, model, and implication_
 
 ### Memory Rule Growth
+
 | Type | Start of Month | End of Month | Net Change |
 |---|---|---|---|
 | Client Preferences | | | |

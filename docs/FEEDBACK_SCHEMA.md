@@ -11,7 +11,7 @@
 - [Feedback Entry Schema](#feedback-entry-schema)
 - [Session Report Schema](#session-report-schema)
 - [Quality Score Schema](#quality-score-schema)
-- [Field Reference](#field-reference)
+- [Field Descriptions](#field-descriptions)
 - [Relationships](#relationships)
 - [Validation Rules](#validation-rules)
 
@@ -345,7 +345,7 @@ The **Quality Score** captures the multi-dimensional scoring breakdown for each 
 
 ### Composite Formula
 
-```
+```text
 CompositeScore = (
     GoodSignalScore       × 0.25 +
     (100 - BadSignalPenalty) × 0.30 +
@@ -396,6 +396,7 @@ graph TD
 ---
 
 > **See Also:**
+>
 > - [JSON Schema Files →](../schemas/)
 > - [Methodology →](METHODOLOGY.md)
 > - [Quality Framework →](QUALITY_FRAMEWORK.md)

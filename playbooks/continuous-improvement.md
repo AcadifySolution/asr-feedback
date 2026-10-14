@@ -12,7 +12,7 @@ This playbook defines how the ASR Feedback platform systematically improves its 
 
 ## Improvement Cycle
 
-```
+```text
 OBSERVE → MEASURE → ANALYZE → PLAN → IMPLEMENT → VERIFY → REPEAT
 ```
 

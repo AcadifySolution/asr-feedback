@@ -5,10 +5,14 @@ on:
     branches: [main]
     paths:
       - "schemas/**"
+      - "scripts/validate_schemas.py"
+      - "requirements-dev.txt"
       - ".github/workflows/schema-validation.yml"
   pull_request:
     paths:
       - "schemas/**"
+      - "scripts/validate_schemas.py"
+      - "requirements-dev.txt"
       - ".github/workflows/schema-validation.yml"
 
 permissions:
@@ -21,19 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate schema documents
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-
-          for path in Path("schemas").glob("*.schema.json"):
-              data = json.loads(path.read_text(encoding="utf-8"))
-              assert data.get("$schema"), f"Missing $schema: {path}"
-              assert data.get("type") == "object", f"Expected object schema: {path}"
-
-          for path in Path("schemas/examples").glob("*.example.json"):
-              json.loads(path.read_text(encoding="utf-8"))
-
-          print("Schema and example JSON validation passed.")
-          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install schema validator
+        run: python -m pip install -r requirements-dev.txt
+      - name: Validate schemas and examples
+        run: python scripts/validate_schemas.py

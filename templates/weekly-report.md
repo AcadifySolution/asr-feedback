@@ -89,6 +89,7 @@ _2-3 sentence summary of the week's quality performance, key achievements, and a
 ## Client Highlights
 
 ### Client: _CLIENT-XXX_
+
 - Sessions: _N_
 - Avg Score: _NN/100_
 - Notable: _Brief highlight or concern_

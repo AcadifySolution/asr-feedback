@@ -13,14 +13,16 @@ This playbook guides evaluators through the complete feedback collection process
 ## Pre-Session Setup (5-10 minutes)
 
 ### Step 1: Review Session Assignment
-```
+
+```text
 1. Open your assigned session in the evaluation dashboard
 2. Note: Client ID, Model ID, Domain, Expected volume
 3. Verify your calibration score is current (≥ 0.80)
 ```
 
 ### Step 2: Load Context
-```
+
+```text
 1. Review the client's evaluation guidelines (if custom)
 2. Load active memory rules for:
    a. This client (MEM_CLIENT_PREF)
@@ -32,7 +34,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 3: Initialize Session
-```
+
+```text
 1. Create session record with session template
 2. Start session timer
 3. Confirm all pre-session checklist items
@@ -43,7 +46,8 @@ This playbook guides evaluators through the complete feedback collection process
 ## Evaluation Process (Per Response)
 
 ### Step 4: First-Pass Read
-```
+
+```text
 1. Read the complete user query
 2. Read the complete AI response WITHOUT annotating
 3. Form an initial impression of overall quality
@@ -53,7 +57,8 @@ This playbook guides evaluators through the complete feedback collection process
 > ⚠️ **If you detect a P0 issue during first-pass, STOP and escalate immediately per the Escalation Procedures playbook.**
 
 ### Step 5: Good Signal Pass (✅)
-```
+
+```text
 1. Re-read the response looking ONLY for positive behaviors
 2. For each good signal found:
    a. Identify the category code (GOOD_REASONING, GOOD_FACTUAL, etc.)
@@ -65,7 +70,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 6: Bad Signal Pass (❌)
-```
+
+```text
 1. Re-read the response looking ONLY for issues and errors
 2. For each bad signal found:
    a. Identify the category code
@@ -78,7 +84,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 7: Learning Capture Pass (📘)
-```
+
+```text
 1. Consider: Did this evaluation reveal anything NEW?
 2. Ask yourself:
    - Is there a pattern I'm seeing across multiple responses?
@@ -94,7 +101,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 8: Memory Check Pass (🧠)
-```
+
+```text
 1. Check: Were all applicable memory rules followed?
    - If violated, note in bad signals
 2. Check: Should any new memory rules be created?
@@ -110,7 +118,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 9: Score the Response
-```
+
+```text
 1. Assign component scores:
    - Good Signal Score (0-100)
    - Bad Signal Penalty (0 to -100)
@@ -126,7 +135,8 @@ This playbook guides evaluators through the complete feedback collection process
 ```
 
 ### Step 10: Self-Review
-```
+
+```text
 Before submitting each entry, verify:
 - [ ] All 4 pillars addressed (even if some are empty arrays)
 - [ ] All descriptions are ≥10 characters and specific
@@ -142,7 +152,8 @@ Before submitting each entry, verify:
 ## Post-Session (10-15 minutes)
 
 ### Step 11: Generate Session Report
-```
+
+```text
 1. Review all entries for consistency across the session
 2. Identify the top 3 issues (by frequency and severity)
 3. Summarize key learnings
@@ -152,7 +163,8 @@ Before submitting each entry, verify:
 ```
 
 ### Step 12: Complete Post-Session Checklist
-```
+
+```text
 - [ ] All entries submitted and schema-validated
 - [ ] Session report generated and submitted
 - [ ] New memory rules submitted for review

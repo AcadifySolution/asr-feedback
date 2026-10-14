@@ -23,6 +23,7 @@
 ## Phase 1: Discovery & Setup (Week 1)
 
 ### Requirements Gathering
+
 - [ ] Conduct kickoff meeting with client stakeholders
 - [ ] Document AI system architecture and model details
 - [ ] Identify primary AI models to be evaluated
@@ -31,6 +32,7 @@
 - [ ] Review client's existing QA processes (if any)
 
 ### Account Setup
+
 - [ ] Create client account in ASR platform
 - [ ] Generate API credentials (client_id + api_key)
 - [ ] Configure service tier and SLA parameters
@@ -38,6 +40,7 @@
 - [ ] Create client communication channel (Slack/Teams)
 
 ### Domain Configuration
+
 - [ ] Assign domain tag(s) from taxonomy
 - [ ] Review domain-specific evaluation considerations
 - [ ] Identify domain expert evaluators
@@ -48,6 +51,7 @@
 ## Phase 2: Integration (Week 2)
 
 ### Technical Integration
+
 - [ ] Share API documentation and SDK guides
 - [ ] Assist with SDK installation and configuration
 - [ ] Establish test environment connectivity
@@ -56,6 +60,7 @@
 - [ ] Confirm data format compatibility with schemas
 
 ### Model Registration
+
 - [ ] Register all AI models to be evaluated
 - [ ] Create model profiles (strengths, weaknesses, notes)
 - [ ] Configure model-specific evaluation parameters
@@ -66,17 +71,20 @@
 ## Phase 3: Pilot Evaluation (Weeks 3-4)
 
 ### Pilot Setup
+
 - [ ] Select 50 representative AI responses for pilot evaluation
 - [ ] Assign calibrated evaluators with domain expertise
 - [ ] Set up dual-evaluation for pilot (100% dual-review)
 
 ### Pilot Execution
+
 - [ ] Complete evaluation of all 50 responses
 - [ ] Generate pilot report with 4-pillar analysis
 - [ ] Calculate baseline quality metrics
 - [ ] Identify initial learning captures and memory rules
 
 ### Pilot Review
+
 - [ ] Present pilot results to client
 - [ ] Review and refine evaluation criteria based on feedback
 - [ ] Adjust scoring weights if needed (client-specific)
@@ -88,12 +96,14 @@
 ## Phase 4: Production Launch (Week 5)
 
 ### Go-Live
+
 - [ ] Switch from staging to production environment
 - [ ] Begin production evaluation at agreed volume
 - [ ] Monitor first-week quality metrics closely
 - [ ] Conduct daily check-ins with client (first week only)
 
 ### Documentation
+
 - [ ] Complete client evaluation guidelines document
 - [ ] Document all client-specific memory rules
 - [ ] Create client-specific evaluation rubric addendum (if needed)
@@ -104,6 +114,7 @@
 ## Phase 5: Steady State (Ongoing)
 
 ### Regular Operations
+
 - [ ] Weekly quality reports delivered on schedule
 - [ ] Monthly review meetings scheduled
 - [ ] Quarterly business reviews scheduled
@@ -111,6 +122,7 @@
 - [ ] Regular evaluator calibration for client's domain
 
 ### Success Criteria
+
 - [ ] SLA compliance ≥ 98%
 - [ ] Client CSAT ≥ 4.0/5.0
 - [ ] Measurable improvement in client's AI quality metrics (6-month review)

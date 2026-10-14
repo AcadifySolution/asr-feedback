@@ -39,7 +39,7 @@ Each benchmark uses a curated dataset of evaluation tasks:
 
 ## Benchmark Scoring
 
-```
+```text
 Benchmark Score = Weighted Average of:
   - Composite Quality Score (50%)
   - Category-Level Accuracy (25%)

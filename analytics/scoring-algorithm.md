@@ -12,7 +12,7 @@ The ASR Feedback composite quality score (0–100) is a weighted combination of 
 
 ## Formula
 
-```
+```text
 CompositeScore = clamp(0, 100,
     GoodSignalScore       × W_good       +
     (100 + BadSignalPenalty) × W_bad      +
@@ -155,12 +155,13 @@ def classify_score(composite):
 ## Example Calculation
 
 Given a response with:
+
 - 3 good signals (GOOD_FACTUAL: 0.9, GOOD_STRUCTURE: 0.8, GOOD_CONTEXT: 0.75)
 - 1 bad signal (BAD_INCOMPLETE, P2)
 - Completeness: 72/100
 - Consistency: 91/100
 
-```
+```text
 Good Signal Score = ((1.5 × 0.9) + (1.0 × 0.8) + (1.2 × 0.75)) / 7.5 × 100 = 45.3
 Bad Signal Penalty = 1 × (-8) = -8
 Severity Impact = -8 (one P2 issue)

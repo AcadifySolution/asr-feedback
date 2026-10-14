@@ -30,7 +30,7 @@ All incoming data is automatically scanned for PII patterns before evaluation:
 
 ### Redaction Format
 
-```
+```text
 Original:  "Call John Smith at john.smith@example.com or 555-123-4567"
 Redacted:  "Call [REDACTED_NAME] at [REDACTED_EMAIL] or [REDACTED_PHONE]"
 ```
@@ -72,6 +72,7 @@ Redaction is applied before data reaches evaluators. Original data is stored in 
 ## Data Processing Agreement (DPA)
 
 A formal DPA is available for all enterprise clients, covering:
+
 - Nature and purpose of processing
 - Types of personal data processed
 - Data subject categories

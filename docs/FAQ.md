@@ -24,6 +24,7 @@ ASR Feedback is an enterprise AI Response Quality Intelligence service operated 
 ### Who is ASR Feedback for?
 
 ASR Feedback is designed for organizations that build, deploy, or operate:
+
 - Large Language Models (LLMs) — GPT, Claude, Gemini, Llama, etc.
 - AI Agents — LangChain, AutoGen, CrewAI, custom agent frameworks
 - Code Generation Tools — GitHub Copilot, Cursor, Codex, custom tools
@@ -80,6 +81,7 @@ See [Methodology](METHODOLOGY.md) for the complete deep dive.
 ### What happens to "Learned" insights?
 
 Every insight captured through the Learning pillar goes through a review process:
+
 1. Evaluated for novelty and significance
 2. Tagged with domain and model context
 3. Analyzed for cross-client patterns (anonymized)
@@ -97,6 +99,7 @@ Memory rules follow a lifecycle: Proposed → Reviewed → Active → Applied �
 ### How do I integrate with ASR Feedback?
 
 Three options:
+
 1. **REST API** — Direct HTTP integration for full control
 2. **Python SDK** — `pip install asr-feedback-client`
 3. **JavaScript SDK** — `npm install @asr-feedback/client`
@@ -179,12 +182,13 @@ No. Client data is used exclusively for the contracted evaluation service. We do
 ### How is pricing structured?
 
 Pricing is based on:
+
 1. Monthly evaluation volume
 2. Turnaround SLA tier
 3. Number of AI models under evaluation
 4. Custom requirements (domain-specific expertise, compliance, etc.)
 
-Contact your account manager or email sales@acadifysolutions.com for a customized quote.
+Contact your account manager or email <sales@acadifysolutions.com> for a customized quote.
 
 ### Is there a free trial?
 
@@ -193,6 +197,7 @@ Yes. We offer a 2-week pilot program with 50 evaluation entries to demonstrate o
 ---
 
 > **See Also:**
+>
 > - [Methodology →](METHODOLOGY.md)
 > - [Integration Guide →](INTEGRATION_GUIDE.md)
 > - [Quality Framework →](QUALITY_FRAMEWORK.md)

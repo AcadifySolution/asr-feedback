@@ -54,7 +54,7 @@ Unlike generic annotation or labeling services, ASR Feedback delivers **deep ana
 
 Our proprietary framework evaluates every AI response across four complementary dimensions:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    ASR 4-PILLAR FEEDBACK SYSTEM                     │
 ├─────────────────┬─────────────────┬────────────────┬────────────────┤
@@ -139,6 +139,7 @@ graph TB
 <td width="50%">
 
 ### 🔬 Deep Analysis
+
 - Multi-dimensional response evaluation
 - Context-aware quality scoring (0–100)
 - Severity-weighted issue detection (P0–P4)
@@ -149,6 +150,7 @@ graph TB
 <td width="50%">
 
 ### 📊 Structured Intelligence
+
 - JSON Schema-validated feedback entries
 - Formal taxonomy with 40+ feedback categories
 - Hierarchical classification system
@@ -161,6 +163,7 @@ graph TB
 <td width="50%">
 
 ### 🔄 Continuous Improvement
+
 - Real-time feedback pipelines
 - Same-day improvement cycles
 - A/B evaluation support
@@ -171,6 +174,7 @@ graph TB
 <td width="50%">
 
 ### 🛡️ Enterprise Governance
+
 - Full audit trail on every feedback entry
 - RBAC-ready access controls
 - PII detection and redaction
@@ -201,7 +205,7 @@ graph TB
 
 ## Repository Structure
 
-```
+```text
 ASR Feedback/
 │
 ├── 📄 README.md                    ← You are here
@@ -281,18 +285,21 @@ ASR Feedback/
 ## Quick Start
 
 ### For Leads & Stakeholders
+
 1. **Understand our methodology** → [METHODOLOGY.md](docs/METHODOLOGY.md)
 2. **See the data model** → [FEEDBACK_SCHEMA.md](docs/FEEDBACK_SCHEMA.md)
 3. **Review quality standards** → [QUALITY_FRAMEWORK.md](docs/QUALITY_FRAMEWORK.md)
 4. **Read success stories** → [CASE_STUDIES.md](docs/CASE_STUDIES.md)
 
 ### For Engineers & Integrators
+
 1. **Review the architecture** → [ARCHITECTURE.md](docs/ARCHITECTURE.md)
 2. **Explore the schemas** → [schemas/](schemas/)
 3. **Integrate with our SDK** → [SDK Documentation](sdk/)
 4. **Follow the integration guide** → [INTEGRATION_GUIDE.md](docs/INTEGRATION_GUIDE.md)
 
 ### For Operations Team
+
 1. **Follow the playbooks** → [playbooks/](playbooks/)
 2. **Use the templates** → [templates/](templates/)
 3. **Understand escalation** → [Escalation Procedures](playbooks/escalation-procedures.md)
@@ -316,7 +323,7 @@ We evaluate AI responses across a broad spectrum of models and platforms:
 
 ## Impact & Outcomes
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────┐
 │                    MEASURED CLIENT OUTCOMES                       │
 ├──────────────────┬───────────────────────────────────────────────┤

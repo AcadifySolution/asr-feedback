@@ -13,7 +13,7 @@
 - [Authentication](#authentication)
 - [Submitting Responses](#submitting-responses)
 - [Receiving Feedback](#receiving-feedback)
-- [Webhook Configuration](#webhook-configuration)
+- [Webhook Configuration](#step-5-configure-webhooks)
 - [Error Handling](#error-handling)
 - [Migration Guide (v1 → v2)](#migration-guide-v1--v2)
 - [Troubleshooting](#troubleshooting)
@@ -72,11 +72,13 @@ Before starting integration:
 ### Step 1: Install the SDK
 
 **Python:**
+
 ```bash
 pip install asr-feedback-client
 ```
 
 **JavaScript:**
+
 ```bash
 npm install @asr-feedback/client
 ```
@@ -84,6 +86,7 @@ npm install @asr-feedback/client
 ### Step 2: Initialize the Client
 
 **Python:**
+
 ```python
 from asr_feedback_client import ASRFeedbackClient
 
@@ -95,6 +98,7 @@ client = ASRFeedbackClient(
 ```
 
 **JavaScript:**
+
 ```javascript
 import { ASRFeedbackClient } from '@asr-feedback/client';
 
@@ -108,6 +112,7 @@ const client = new ASRFeedbackClient({
 ### Step 3: Submit an AI Response for Evaluation
 
 **Python:**
+
 ```python
 entry_id = client.submit_response(
     response_id="your-unique-response-id",
@@ -130,6 +135,7 @@ print(f"Submitted for evaluation: {entry_id}")
 ### Step 4: Retrieve Feedback
 
 **Python:**
+
 ```python
 # Poll for feedback (or use webhooks)
 feedback = client.get_feedback(entry_id=entry_id)
@@ -179,6 +185,7 @@ X-Client-ID: YOUR_CLIENT_ID
 ### Key Rotation
 
 API keys can be rotated via the dashboard:
+
 1. Navigate to **Settings → API Keys**
 2. Click **Generate New Key**
 3. Update your integration with the new key
@@ -331,6 +338,7 @@ client = ASRFeedbackClient(
 ---
 
 > **See Also:**
+>
 > - [API Reference →](../sdk/api-reference.md)
 > - [Python SDK →](../sdk/python/)
 > - [JavaScript SDK →](../sdk/javascript/)

@@ -39,6 +39,7 @@ This document defines the service level agreements for the ASR Feedback Intellig
 ### Exclusions
 
 Turnaround SLA excludes:
+
 - Planned maintenance windows (communicated 48 hours in advance)
 - Force majeure events
 - Client-side delays (e.g., insufficient context requiring clarification)
@@ -63,7 +64,7 @@ Turnaround SLA excludes:
 
 ### Downtime Calculation
 
-```
+```text
 Uptime % = ((Total Minutes - Downtime Minutes) / Total Minutes) × 100
 
 Example (99.9% in a 30-day month):
@@ -113,6 +114,7 @@ If turnaround or uptime SLAs are not met, clients receive service credits:
 ## Reporting
 
 SLA performance is reported to clients:
+
 - **Weekly:** Summary metrics in weekly quality report
 - **Monthly:** Detailed SLA performance in monthly review
 - **Real-time:** Dashboard access for Enterprise tier clients

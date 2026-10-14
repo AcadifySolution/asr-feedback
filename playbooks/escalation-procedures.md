@@ -12,7 +12,7 @@ This playbook defines when, how, and to whom issues should be escalated. Quick a
 
 ## Escalation Decision Matrix
 
-```
+```text
 Is there a P0 (Critical) issue?
 ├── YES → IMMEDIATE ESCALATION (see Level 1 below)
 │
@@ -46,7 +46,8 @@ Is there a P0 (Critical) issue?
 | 7 | Create MEM_SAFETY_RULE to prevent recurrence | Within 2 hours |
 
 **Emergency Contact Chain:**
-```
+
+```text
 Evaluator → Quality Lead → Account Manager → Operations Director
 ```
 
@@ -83,7 +84,8 @@ Evaluator → Quality Lead → Account Manager → Operations Director
 ## Communication Templates
 
 ### Level 1 Emergency Notification
-```
+
+```text
 🚨 P0 ESCALATION — [Client Name]
 
 Entry ID: FB-YYYY-NNNN-NNN
@@ -98,7 +100,8 @@ ACTION REQUIRED: Review within 15 minutes.
 ```
 
 ### Level 2 Priority Notification
-```
+
+```text
 ⚠️ P1 FLAG — [Client Name]
 
 Entry ID: FB-YYYY-NNNN-NNN
@@ -113,6 +116,7 @@ Action: Review before next client report delivery.
 ## De-Escalation Criteria
 
 An escalation can be de-escalated when:
+
 - The issue is confirmed to be a false positive after review
 - The root cause is identified and mitigated
 - The client has been informed and acknowledges the resolution

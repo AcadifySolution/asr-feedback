@@ -23,44 +23,51 @@ This policy defines how the ASR Feedback Intelligence Platform handles, stores, 
 
 ## Data Lifecycle
 
-```
+```text
 COLLECTION → VALIDATION → PROCESSING → STORAGE → ACCESS → ARCHIVAL → DELETION
 ```
 
 ### 1. Collection
+
 - Data enters the platform via API, SDK, or batch upload
 - TLS 1.3 encryption in transit for all data
 - Input validation and schema enforcement at ingestion
 
 ### 2. Validation
+
 - Schema validation against formal JSON schemas
 - PII detection scan (pre-processing)
 - Data integrity checks (checksums, format validation)
 
 ### 3. Processing
+
 - Evaluators access data through secure evaluation interface
 - PII is redacted before presentation to evaluators
 - No data leaves the evaluation environment
 - Processing is logged in the audit trail
 
 ### 4. Storage
+
 - All data encrypted at rest using AES-256
 - Database-level encryption with key management via cloud KMS
 - Backups are encrypted and stored in a separate geographic region
 - Storage complies with client-specified data residency requirements
 
 ### 5. Access
+
 - Role-Based Access Control (RBAC) for all data access
 - Principle of least privilege enforced
 - All access logged in immutable audit trail
 - Multi-factor authentication required for sensitive data access
 
 ### 6. Archival
+
 - Data transitioned to cold storage after active retention period
 - Archived data remains encrypted and access-controlled
 - Archival event logged in audit trail
 
 ### 7. Deletion
+
 - Data deleted upon client request or at end of retention period
 - Deletion is cryptographic (key destruction) for encrypted stores
 - Deletion verified and logged in audit trail
@@ -96,6 +103,7 @@ COLLECTION → VALIDATION → PROCESSING → STORAGE → ACCESS → ARCHIVAL →
 ## Third-Party Data Sharing
 
 **We do NOT share client data with any third party**, with the following documented exceptions:
+
 1. Cloud infrastructure providers (encrypted storage only — they cannot read the data)
 2. As required by law (with client notification unless legally prohibited)
 3. Anonymized, aggregated analytics (no client identification possible)

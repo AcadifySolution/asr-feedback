@@ -139,6 +139,7 @@ graph LR
 ### Monthly Quality Review
 
 Comprehensive review covering:
+
 - Full reliability metrics with trend analysis
 - Evaluator performance scorecards
 - Client-specific quality reports
@@ -212,6 +213,7 @@ graph TB
 ---
 
 > **See Also:**
+>
 > - [Methodology →](METHODOLOGY.md)
 > - [Escalation Procedures →](../playbooks/escalation-procedures.md)
 > - [Metrics & KPIs →](METRICS_AND_KPIs.md)

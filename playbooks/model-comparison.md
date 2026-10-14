@@ -13,7 +13,8 @@ This playbook guides structured A/B evaluation of competing AI models on identic
 ## Comparison Setup
 
 ### Step 1: Define Comparison Scope
-```
+
+```text
 1. Select models to compare (2-4 models recommended)
 2. Define the task set:
    - Minimum 30 identical queries per comparison
@@ -26,7 +27,8 @@ This playbook guides structured A/B evaluation of competing AI models on identic
 ```
 
 ### Step 2: Generate Responses
-```
+
+```text
 1. Submit identical queries to all models
 2. Record: model_id, response, latency, token_count
 3. Anonymize responses (remove model identification markers)
@@ -34,7 +36,8 @@ This playbook guides structured A/B evaluation of competing AI models on identic
 ```
 
 ### Step 3: Blind Evaluation
-```
+
+```text
 1. Evaluator receives anonymized responses (Model A, Model B, etc.)
 2. Apply standard 4-pillar evaluation to EACH response
 3. For each query, additionally record:
@@ -48,7 +51,8 @@ This playbook guides structured A/B evaluation of competing AI models on identic
 ```
 
 ### Step 4: Analysis
-```
+
+```text
 1. Reveal model identities
 2. Compute per-model:
    - Average composite score
@@ -77,6 +81,7 @@ This playbook guides structured A/B evaluation of competing AI models on identic
 | Preference Win Rate | 62% | 38% | **Model A** |
 
 ### Routing Recommendation
+
 _Based on results, recommend which model should handle which task types._
 
 ---

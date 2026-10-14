@@ -32,19 +32,23 @@ The client's AI-powered triage system was producing recommendations that were te
 ### What ASR Feedback Delivered
 
 **✅ Good Signal Insights:**
+
 - Identified that the AI consistently excelled at recognizing acute symptoms (98% accuracy on P0 clinical indicators)
 - Documented 23 specific reasoning patterns where the model outperformed clinical decision trees
 
 **❌ Bad Signal Detection:**
+
 - Detected a systematic "completeness gap" — the model omitted asymptomatic presentation information in 34% of responses
 - Identified P1-severity hallucination patterns in drug interaction recommendations (12 instances across 2,400 evaluations)
 - Found that triage urgency was over-estimated for low-acuity conditions, leading to unnecessary ER referrals
 
 **📘 Learning Capture:**
+
 - Discovered that the model's performance degraded significantly when handling multilingual symptom descriptions (22% accuracy drop for Hindi/Spanish inputs vs. English)
 - Identified a novel interaction pattern: the model performed better when asked to "think step by step" about differential diagnoses but worse when asked to "be brief"
 
 **🧠 Memory Persistence:**
+
 - Established 47 persistent clinical rules specific to this client's use case
 - Created region-specific evaluation criteria for 6 geographic markets
 
@@ -80,6 +84,7 @@ The client's AI-powered triage system was producing recommendations that were te
 ### Challenge
 
 The client's AI chatbot handled 40,000+ customer interactions monthly. While response accuracy was generally acceptable, they were experiencing:
+
 - Regulatory compliance violations in 2.3% of responses
 - Inconsistent tone across different product categories
 - A persistent inability to handle complex multi-step financial calculations
@@ -87,19 +92,23 @@ The client's AI chatbot handled 40,000+ customer interactions monthly. While res
 ### What ASR Feedback Delivered
 
 **✅ Good Signal Insights:**
+
 - The custom fine-tuned Llama model outperformed GPT-4o on product-specific queries by 18%, validating their fine-tuning investment
 - Identified 31 "golden response" patterns that became training examples for future fine-tuning
 
 **❌ Bad Signal Detection:**
+
 - Detected 89 regulatory compliance violations across 3 months (categorized by regulation: TILA, ECOA, FCRA)
 - Found that the model consistently miscalculated APR for variable-rate products
 - Identified tone inconsistencies: formal for credit cards, overly casual for mortgages
 
 **📘 Learning Capture:**
+
 - Discovered that the model's compliance rate improved 45% when system prompts included specific regulatory citations rather than general "be compliant" instructions
 - Found that multi-step calculations failed primarily at the "accumulation" step — the model lost track of running totals
 
 **🧠 Memory Persistence:**
+
 - Established 112 regulatory compliance rules mapped to specific regulations
 - Created product-specific tone guides for 8 financial product categories
 
@@ -134,10 +143,12 @@ The client's AI tutor needed to adapt its explanations to student age, skill lev
 ### What ASR Feedback Delivered
 
 **📘 Key Learning:**
+
 - Discovered that the model's explanations for Grade 3 students used vocabulary at a Grade 6 reading level in 42% of cases
 - Found that the model's step-by-step math breakdowns skipped intermediate steps that were obvious to adults but essential for young learners
 
 **🧠 Key Memory Rules:**
+
 - Established grade-specific vocabulary constraints
 - Created 28 "explanation pattern" rules that map mathematical concepts to age-appropriate analogies
 
@@ -167,6 +178,7 @@ The client's AI tutor needed to adapt its explanations to student age, skill lev
 ### Challenge
 
 The client's code generation tool was producing syntactically correct code that often had:
+
 - Security vulnerabilities (SQL injection, XSS)
 - Performance anti-patterns
 - Inconsistent coding style
@@ -175,15 +187,18 @@ The client's code generation tool was producing syntactically correct code that 
 ### What ASR Feedback Delivered
 
 **❌ Critical Bad Signal Detection:**
+
 - Identified 34 security vulnerability patterns across 4 models
 - Categorized vulnerabilities by OWASP Top 10 classification
 - Found that 67% of security issues were concentrated in database interaction code
 
 **📘 Key Learning:**
+
 - Discovered that providing the model with the project's existing code style guide in the system prompt reduced style violations by 73%
 - Found that Claude Opus produced the most secure code but GPT-4.1 produced the most performant code — enabling the client to build a routing strategy
 
 **🧠 Key Memory Rules:**
+
 - Established 89 security-specific evaluation rules mapped to CWE identifiers
 - Created language-specific (Python, JavaScript, Go) evaluation criteria
 
@@ -200,7 +215,7 @@ The client's code generation tool was producing syntactically correct code that 
 
 ## Common Patterns Across Case Studies
 
-```
+```text
 ┌────────────────────────────────────────────────────────────────────┐
 │               PATTERNS ACROSS ALL ENGAGEMENTS                      │
 ├────────────────────────────────────────────────────────────────────┤
@@ -231,6 +246,7 @@ The client's code generation tool was producing syntactically correct code that 
 ---
 
 > **See Also:**
+>
 > - [Methodology →](METHODOLOGY.md)
 > - [Metrics & KPIs →](METRICS_AND_KPIs.md)
 > - [Quality Framework →](QUALITY_FRAMEWORK.md)
