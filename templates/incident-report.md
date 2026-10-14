@@ -27,17 +27,20 @@ _Clear, factual description of what happened. What was the AI response? What was
 ## Evidence
 
 ### AI Response (Relevant Excerpt)
-```
+
+```text
 [Paste the relevant portion of the AI response]
 ```
 
 ### User Query
-```
+
+```text
 [Paste the user's query that triggered this response]
 ```
 
 ### System Prompt Context
-```
+
+```text
 [Relevant system prompt elements, if applicable]
 ```
 
@@ -58,12 +61,15 @@ _Clear, factual description of what happened. What was the AI response? What was
 ## Root Cause Analysis
 
 ### Immediate Cause
+
 _What directly caused the incident?_
 
 ### Contributing Factors
+
 _What conditions enabled this to happen?_
 
 ### Root Cause
+
 _The fundamental reason this occurred._
 
 ---
@@ -86,14 +92,17 @@ _The fundamental reason this occurred._
 ## Remediation
 
 ### Immediate Actions
+
 - [ ] _Action 1_
 - [ ] _Action 2_
 
 ### Long-Term Actions
+
 - [ ] _Action 1_
 - [ ] _Action 2_
 
 ### Memory Rules Created
+
 | Rule ID | Type | Rule Text |
 |---|---|---|
 | MEM-YYYY-NNNN | | |

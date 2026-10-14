@@ -24,10 +24,12 @@ This playbook defines the quality review process — how we audit our own evalua
 ## Real-Time Sampling Procedure
 
 ### Trigger
+
 Automated random selection of 5% of submitted entries.
 
 ### Process
-```
+
+```text
 1. Receive flagged entry for audit
 2. Perform independent evaluation of the same AI response
 3. Compare your evaluation against the evaluator's:
@@ -48,7 +50,7 @@ Automated random selection of 5% of submitted entries.
 
 ## Daily Spot Check Procedure
 
-```
+```text
 1. Pull 20 random entries from yesterday's submissions
    - Stratify by evaluator (ensure coverage)
    - Include at least 2 entries from each active evaluator
@@ -75,7 +77,7 @@ Automated random selection of 5% of submitted entries.
 
 ## Weekly Deep Audit Procedure
 
-```
+```text
 1. Sample Selection (50 entries):
    - 10 per major client (top 3-5 clients)
    - Stratified by evaluator, model, and domain

@@ -258,7 +258,7 @@ graph TB
 
 **Evaluator Assignment Algorithm:**
 
-```
+```text
 1. Incoming response arrives from queue
 2. Extract: domain, model_type, language, complexity_estimate
 3. Match available evaluators by:
@@ -296,7 +296,7 @@ graph LR
 
 **Composite Score Calculation:**
 
-```
+```text
 CompositeScore = (
     GoodSignalScore × W_good +
     BadSignalPenalty × W_bad +
@@ -425,7 +425,7 @@ graph TB
 
 ### Horizontal Scaling Strategy
 
-```
+```text
 Ingestion Service    → Stateless, scale by adding instances
 Evaluation Engine    → Scale by adding evaluators (human + assisted)
 Quality Engine       → Stateless computation, scale horizontally
@@ -494,6 +494,7 @@ graph TB
 ---
 
 > **See Also:**
+>
 > - [Methodology →](METHODOLOGY.md)
 > - [Feedback Schema →](FEEDBACK_SCHEMA.md)
 > - [Integration Guide →](INTEGRATION_GUIDE.md)

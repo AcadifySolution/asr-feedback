@@ -12,7 +12,7 @@ Insight extraction transforms raw feedback data into actionable intelligence by 
 
 ## Extraction Pipeline
 
-```
+```text
 Raw Feedback Entries
     → Aggregation (by model, domain, client, time period)
     → Pattern Detection (clustering similar observations)

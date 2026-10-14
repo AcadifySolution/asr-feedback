@@ -21,6 +21,7 @@ Content-Type: application/json
 ### Responses
 
 #### Submit Response for Evaluation
+
 ```http
 POST /v2/responses
 ```
@@ -28,6 +29,7 @@ POST /v2/responses
 Submit an AI-generated response for 4-pillar evaluation.
 
 **Request Body:**
+
 ```json
 {
   "responseId": "string (required)",
@@ -49,6 +51,7 @@ Submit an AI-generated response for 4-pillar evaluation.
 ```
 
 **Response:** `202 Accepted`
+
 ```json
 {
   "entryId": "FB-2026-0547-001",
@@ -61,6 +64,7 @@ Submit an AI-generated response for 4-pillar evaluation.
 ---
 
 #### Batch Submit Responses
+
 ```http
 POST /v2/responses/batch
 ```
@@ -68,6 +72,7 @@ POST /v2/responses/batch
 Submit multiple responses in a single request (max 100).
 
 **Request Body:**
+
 ```json
 {
   "responses": [
@@ -77,6 +82,7 @@ Submit multiple responses in a single request (max 100).
 ```
 
 **Response:** `202 Accepted`
+
 ```json
 {
   "batchId": "BATCH-2026-0547",
@@ -93,6 +99,7 @@ Submit multiple responses in a single request (max 100).
 ### Feedback
 
 #### Get Feedback Entry
+
 ```http
 GET /v2/feedback/{entryId}
 ```
@@ -105,11 +112,13 @@ Returns the full feedback entry object as defined in [feedback-entry.schema.json
 ---
 
 #### List Feedback Entries
+
 ```http
 GET /v2/feedback?sessionId={sessionId}&status={status}&page={page}&limit={limit}
 ```
 
 **Query Parameters:**
+
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `sessionId` | string | — | Filter by session |
@@ -125,6 +134,7 @@ GET /v2/feedback?sessionId={sessionId}&status={status}&page={page}&limit={limit}
 | `limit` | integer | 50 | Results per page (max 100) |
 
 **Response:** `200 OK`
+
 ```json
 {
   "data": [ /* array of feedback entries */ ],
@@ -142,6 +152,7 @@ GET /v2/feedback?sessionId={sessionId}&status={status}&page={page}&limit={limit}
 ### Sessions
 
 #### Get Session Report
+
 ```http
 GET /v2/sessions/{sessionId}/report
 ```
@@ -154,6 +165,7 @@ Returns the full session report object as defined in [session-report.schema.json
 ---
 
 #### List Sessions
+
 ```http
 GET /v2/sessions?startDate={date}&endDate={date}&page={page}
 ```
@@ -163,11 +175,13 @@ GET /v2/sessions?startDate={date}&endDate={date}&page={page}
 ### Memory Rules
 
 #### List Active Memory Rules
+
 ```http
 GET /v2/memory?scope={scope}&type={type}&status=active
 ```
 
 **Query Parameters:**
+
 | Parameter | Type | Description |
 |---|---|---|
 | `scope` | string | `global`, `client:{clientId}`, `domain:{tag}`, `model:{modelId}` |
@@ -179,6 +193,7 @@ GET /v2/memory?scope={scope}&type={type}&status=active
 ### Webhooks
 
 #### Configure Webhook
+
 ```http
 POST /v2/webhooks
 ```
@@ -192,6 +207,7 @@ POST /v2/webhooks
 ```
 
 #### Webhook Events
+
 | Event | Description |
 |---|---|
 | `feedback.completed` | A feedback entry evaluation is complete |
@@ -211,6 +227,7 @@ POST /v2/webhooks
 | Enterprise | 300 | 500 |
 
 Rate limit headers are included in every response:
+
 ```http
 X-RateLimit-Limit: 60
 X-RateLimit-Remaining: 45
@@ -222,6 +239,7 @@ X-RateLimit-Reset: 1719842400
 ## Error Responses
 
 All errors follow a consistent format:
+
 ```json
 {
   "error": {

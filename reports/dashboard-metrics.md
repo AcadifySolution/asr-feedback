@@ -13,6 +13,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 ## Dashboard Layout
 
 ### Panel 1: Real-Time Monitor
+
 | Metric | Source | Refresh |
 |---|---|---|
 | Active evaluation sessions | Session Manager | 30s |
@@ -22,6 +23,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 | Today's entry count | Feedback Store | 60s |
 
 ### Panel 2: Quality Overview
+
 | Metric | Source | Refresh |
 |---|---|---|
 | Avg composite score (rolling 7 days) | Feedback Store | 5 min |
@@ -31,6 +33,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 | Inter-rater reliability trend (12 weeks) | Audit System | Daily |
 
 ### Panel 3: Evaluator Performance
+
 | Metric | Source | Refresh |
 |---|---|---|
 | Per-evaluator composite score avg | Feedback Store | 15 min |
@@ -40,6 +43,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 | Calibration score trend | Calibration System | Weekly |
 
 ### Panel 4: Client View
+
 | Metric | Source | Refresh |
 |---|---|---|
 | Per-client avg composite score | Feedback Store | 15 min |
@@ -49,6 +53,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 | Per-client memory rules (active/violated) | Memory Store | 15 min |
 
 ### Panel 5: Intelligence
+
 | Metric | Source | Refresh |
 |---|---|---|
 | New learnings this week | Feedback Store | 15 min |
@@ -58,6 +63,7 @@ This document specifies the dashboard panels, metrics, and data sources for the 
 | Trend alerts | Intelligence Layer | Hourly |
 
 ### Panel 6: SLA Monitor
+
 | Metric | Source | Refresh |
 |---|---|---|
 | Per-tier compliance % | SLA Monitor | 5 min |

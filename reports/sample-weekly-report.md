@@ -101,18 +101,21 @@ All evaluators above minimum κ threshold (0.80). ✅
 ## Client Highlights
 
 ### HealthTech (CLIENT-HEALTHTECH-01)
+
 - Sessions: 42 | Entries: 1,008
 - Avg Score: **72.1** (↓ from 75.8 — model update impact)
 - Notable: Completeness regression detected post June 20 model update
 - **Action:** Scheduled call with client engineering team for Thursday
 
 ### FinServ (CLIENT-FINSERV-01)
+
 - Sessions: 38 | Entries: 912
 - Avg Score: **76.4** (→ stable)
 - Notable: Multi-product context switching is a new issue pattern
 - **Action:** Added memory rule MEM-2026-0488
 
 ### EdTech (CLIENT-EDTECH-01)
+
 - Sessions: 28 | Entries: 672
 - Avg Score: **77.2** (↑ from 74.6)
 - Notable: Prompt optimization recommendation from last week showing positive results

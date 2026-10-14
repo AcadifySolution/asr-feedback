@@ -13,6 +13,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 ## Monthly Performance Dashboard
 
 ### Volume Metrics
+
 | Metric | Target | Actual | vs Last Month |
 |---|---|---|---|
 | Total Entries Processed | — | **12,847** | ↑ 12% from 11,470 |
@@ -23,6 +24,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 | Active Evaluators | — | **18** | ↑ from 16 |
 
 ### Quality Metrics
+
 | Metric | Target | Actual | vs Last Month |
 |---|---|---|---|
 | Inter-Rater Reliability (κ) | ≥ 0.80 | **0.87** | ↑ from 0.85 |
@@ -33,6 +35,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 | Client Satisfaction (CSAT) | ≥ 4.5 | **4.7/5.0** | ↑ from 4.6 |
 
 ### SLA Performance
+
 | Tier | SLA | Compliance | vs Last Month |
 |---|---|---|---|
 | Enterprise Critical | 2 hours | **99.2%** | ↑ from 98.9% |
@@ -55,6 +58,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 | 5 | LEARN_CROSS_MODEL | Claude Opus more cautious on medical, GPT-4o more comprehensive | High | 2 |
 
 ### Memory Rule Growth
+
 | Type | Start of Month | End of Month | Net Change |
 |---|---|---|---|
 | Client Preferences | 98 | 112 | +14 |
@@ -70,6 +74,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 ## Client-by-Client Review
 
 ### HealthTech (CLIENT-HEALTHTECH-01)
+
 | Metric | Value |
 |---|---|
 | Sessions | 168 |
@@ -81,6 +86,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 | CSAT | 4.6/5.0 |
 
 ### FinServ (CLIENT-FINSERV-01)
+
 | Metric | Value |
 |---|---|
 | Sessions | 152 |
@@ -92,6 +98,7 @@ June 2026 was a milestone month for the ASR Feedback platform. We processed over
 | CSAT | 4.8/5.0 |
 
 ### EdTech (CLIENT-EDTECH-01) — *New Client*
+
 | Metric | Value |
 |---|---|
 | Sessions | 88 |

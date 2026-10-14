@@ -84,6 +84,7 @@
 ### 🧠 Memory Rules
 
 **New Rules Created:**
+
 | Rule ID | Type | Rule Text | Scope |
 |---|---|---|---|
 | MEM-YYYY-NNNN | | | |

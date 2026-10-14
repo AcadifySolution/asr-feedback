@@ -123,6 +123,7 @@ This glossary defines key terms, concepts, and abbreviations used throughout the
 ---
 
 > **See Also:**
+>
 > - [Methodology →](METHODOLOGY.md)
 > - [Feedback Schema →](FEEDBACK_SCHEMA.md)
 > - [Taxonomy →](../taxonomy/)

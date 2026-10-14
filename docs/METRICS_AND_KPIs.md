@@ -93,7 +93,7 @@ This document defines the key performance indicators (KPIs) and operational metr
 
 ### SLA Compliance Trend
 
-```
+```text
 Month     | Enterprise Critical | Enterprise Standard | Professional | Standard
 ----------|--------------------|--------------------|-------------|--------
 Jan 2026  | 98.5%              | 97.8%              | 99.1%       | 99.9%
@@ -135,6 +135,7 @@ Jun 2026  | 99.2%              | 98.7%              | 99.5%       | 99.8%
 ---
 
 > **See Also:**
+>
 > - [Quality Framework →](QUALITY_FRAMEWORK.md)
 > - [SLA Definitions →](../compliance/sla-definitions.md)
 > - [Dashboard Specification →](../reports/dashboard-metrics.md)

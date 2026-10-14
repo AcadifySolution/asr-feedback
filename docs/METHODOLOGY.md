@@ -36,7 +36,7 @@ This methodology was developed through 18 months of iterative refinement across 
 
 Most AI evaluation approaches fall into one of three traps:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    THREE TRAPS OF AI FEEDBACK                       │
 ├──────────────────────┬──────────────────────┬──────────────────────┤
@@ -105,6 +105,7 @@ Captures what the AI response did **well** — the behaviors, reasoning patterns
 ### Why It Matters
 
 Identifying good performance is as critical as finding errors. Without explicit reinforcement signals:
+
 - Models lose successful behaviors during fine-tuning
 - Teams can't distinguish "mediocre but safe" from "excellent and innovative"
 - Positive patterns aren't propagated across model versions
@@ -124,7 +125,7 @@ Identifying good performance is as critical as finding errors. Without explicit 
 
 ### Scoring
 
-```
+```text
 Good Signal Score = (Σ category_weights × instance_counts) / max_possible_score × 100
 
 Where:
@@ -149,6 +150,7 @@ Detects what the AI response did **poorly** — errors, failures, and quality ga
 ### Why It Matters
 
 This is the most intuitive pillar, but our methodology goes beyond simple error flagging:
+
 - Every bad signal is **severity-classified** (P0–P4)
 - Every bad signal is **root-cause analyzed** (why, not just what)
 - Every bad signal generates a **remediation recommendation**
@@ -170,7 +172,7 @@ This is the most intuitive pillar, but our methodology goes beyond simple error 
 
 ### Severity Classification
 
-```
+```text
 ┌──────┬───────────────┬──────────────────────────────────────────────┐
 │ Level│ Name          │ Criteria                                     │
 ├──────┼───────────────┼──────────────────────────────────────────────┤
@@ -224,7 +226,7 @@ This is the pillar that transforms ASR Feedback from an annotation service into 
 
 Every learning entry must include:
 
-```
+```text
 1. CONTEXT      — What was the evaluation scenario?
 2. OBSERVATION  — What was discovered?
 3. EVIDENCE     — Specific examples from the response
@@ -266,6 +268,7 @@ Creates **durable institutional memory** — persistent rules, client preference
 ### Why It Matters
 
 Without Memory Persistence:
+
 - The same error gets flagged session after session, but nothing changes
 - Client preferences are forgotten when evaluators rotate
 - Critical safety rules discovered in one session aren't applied in the next
@@ -432,7 +435,7 @@ flowchart TD
 
 ### New Evaluator Calibration
 
-```
+```text
 Phase 1: Training (5 days)
   - Study methodology documentation
   - Review 50 annotated examples
@@ -482,6 +485,7 @@ graph LR
 ---
 
 > **See Also:**
+>
 > - [Feedback Schema →](FEEDBACK_SCHEMA.md)
 > - [Quality Framework →](QUALITY_FRAMEWORK.md)
 > - [Case Studies →](CASE_STUDIES.md)
